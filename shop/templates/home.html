@@ -1,9 +1,85 @@
-{% extends 'base.html' %}
+<!-- берём из base.html -->
+{% extends 'base.html' %} 
 
+<!-- загрузили статические файлы -->
+{% load static %}
+
+<!-- название страницы, смотри в title base.html -->
 {% block title %} 
 	Домашняя страница
 {% endblock %}
 
+<!-- начало контента из base.html -->
 {% block content %}
-<h1>Домашная страница</h1>
+
+	<!-- контейнер во всю ширину -->
+	<div class="container-fluid">
+		<div class="row">
+			<img class="img-fluid" src="{% static 'images/home_img.jpg' %}">
+		</div>	
+	</div>
+	
+
+	<!-- заголовок "Наша Продукция" -->
+	<!-- делает отступ вниз  -->
+	<div class="py-4">
+		<div class="container">
+			<div class="row">
+				
+				<!-- col - ширина 10 из 12/mx-auto - по центру весь блок col/my-2 - отступы сверху и снизу-2/text-center - центрует текст относительно своего блока(у нас col)  -->
+				<div class="col-10 mx-auto my-2 text-center">
+					<!--text-capitalize - все первый буквы заглавные -->
+					<div class="fw-weight-lighter"><h1 class="text-capitalize text-light">В наличии:</h1></div
+				</div>
+			</div><!-- закрывает row -->
+		</div> <!-- закрывает conteiner -->
+	</div> <!-- закрывает внешний  div - просто py-4 -->
+
+
+	<!-- Ниже сами продукты -->
+	<div class="container">
+		<div class="row">
+
+			<!-- Цикл с продуктами -->
+			<!-- запустили цикл 8 раз -->
+			{% for i in '12345678' %}
+
+				<!-- col-9 ширина 9из12/mx-auto -центруем col/col-md-6 1столбец бцдет равен половине col-9(4.5)/col-lg-3 ещё раз поделили зачемто, проще смотреть по факту -->
+				<div class="col-9 mx-auto col-md-6 col-lg-3">
+					<!-- просто отступы -->
+					<div class="py-3">
+						<!-- card - botstrap карточки/mb-4 - отступ вниз от карты/ -->
+						<div class="card mb-4">
+							<!-- card-img-top - картинка будет сверху карты, тоже bootstrap -->
+							<img class="card-img-top" src="{% static 'images/aston.jpg' %}">
+							
+
+							<!-- Заголовки к карточкам -->
+							<!-- card-footer нижняя часть карточки/d-flex - адаптивная утилита flexbox/justify-content-between - выровнеть по всей ширине(в нашем случае карточки-->
+							<!-- допом в style убрали фон и обрамление футера карточки -->
+							<div class="card-footer d-flex justify-content-between" style="background: transparent; border-color: transparent;">
+								<!-- сам текст -->
+								<!-- .fw-weight-bolder - текст жирней/mb-0 - отступ вниз после текста -->
+								<p class="fw-weight-bolder mb-0">Астон</p>
+								<!-- цены -->
+								<!-- .fst-italic - курсивный текст/.text-info - голубой текст -->
+								<h5 class="text-info fst-italic">50 000 $</h5>
+							</div><!-- карточка футер -->
+						</div><!-- карточка -->
+					</div><!-- див py-3 -->
+				</div><!-- сol -->
+
+			{% endfor %}
+
+
+		</div><!-- закрывает row -->
+	</div><!-- закрывает container -->
+
+
+
+
+
+
+
+<!-- конец контента из base.html -->
 {% endblock %}
