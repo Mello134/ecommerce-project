@@ -16,7 +16,7 @@
 
 
 
-	<!-- Название страницы будет менятся в зависимости от того что написано в home.html about.html -->
+	<!-- Название страницы будет менятся в зависимости от того что написано в home.html product.html -->
     <title>{% block title %} {% endblock %}</title>
 
 
@@ -38,8 +38,8 @@
   <body>
  
 
-  		<a href="{% url 'home' %}">Домашняя страница</a>
-		<a href="{% url 'about' %}">About страница</a>	
+  	<a href="{% url 'home' %}">Домашняя страница</a>
+		<a href="{% url 'product' %}">Описание товара</a>	
 
 
 	<!-- навбар весь --> 
@@ -55,7 +55,7 @@
 
         <!-- сужение, расширение окна браузера (появляется убирается надписи навбара включая поиск)-->
   		<div id="navbarid" class="collapse navbar-collapse justify-content-between">
-	        <!-- Навбар список (категории, контакты, about) -->
+	        <!-- Навбар список (категории, контакты, описание товара) -->
 	  		<ul class="navbar-nav">
 	  			<!-- Ссылка категории и вспылвание других категорий 1 2 3 4 5 -->
 	        	<li class="nav-item dropdown">
@@ -73,9 +73,9 @@
 	  			<li class="nav-item">
 	  				<a class="nav-link text-light text-uppercase fw-weight-bolder px-3" href="">Контакты</a>
 	  			</li>
-	  			<!-- просто ссылка на about -->
+	  			<!-- просто ссылка на product -->
 	  			<li class="nav-item">
-	  				<a class="nav-link text-light text-uppercase fw-weight-light px-3" href="">About</a>
+	  				<a class="nav-link text-light text-uppercase fw-weight-light px-3" href="">Описание товара</a>
 	  			</li> 			
 	  		</ul>
 
@@ -98,7 +98,7 @@
 	<!-- Конец навбвра -->
   	</nav>
   	
-  	<!-- Весь контент base.html - его будем копировать в home/about.html -->
+  	<!-- Весь контент base.html - его будем копировать в home/product.html -->
 	{% block content %}
 	{% endblock %}
 

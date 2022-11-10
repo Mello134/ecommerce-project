@@ -3,5 +3,5 @@ from . import views#импортировали shop/views.py
 
 urlpatterns = [
     path('', views.home, name='home'),#пустой url к функции home в shop/views.py, присвоили имя home
-    path('about/', views.about, name='about'),
+    path('product/', views.product, name='product'),
 ]

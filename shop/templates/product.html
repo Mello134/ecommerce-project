@@ -1,0 +1,40 @@
+{% extends 'base.html' %}<!--  берём из base.html -->
+{% load static %} <!-- подгружаем статические файлы -->
+ <!-- название страницы, смотри в title base.html -->
+{% block title %}
+	Описание товара
+
+{% endblock %}
+<!-- название страницы, смотри в title base.html -->
+
+{% block content %}<!--  начало контекта base.html - навбар -->
+<h1 class="text-light">Описание товара</h1>
+<!-- py-5 отступ cверху и снизу 5 padding top+bottom -->
+<div class="container py-5">
+	<!-- margin top 4  -->
+	<div class="row mt-4">
+
+		<!-- col - столбец/10 - ширина 10из12/mx - margin left+right/auto - по центру весь блок col/ md-6 размер >= 768px/my - margin top+bottom -->
+		<div class="col-10 mx-auto col-md-6 my-3">
+			<!-- путь ecommerce-project/static/images -->
+			<!-- class="img-fluid" - чтобы оно масштабировалось с шириной родительского элемента, и небыло огромным -->
+			<img src="{% static 'images/bentleycont.jpg' %}" class="img-fluid">
+		</div><!-- col 10 -->
+
+		<!-- col - столбец/10 - ширина 10из12/mx - margin left+right/auto - по центру весь блок col/ md-6 размер >= 768px/my - margin top+bottom -->
+		<div class="col-10 mx-auto col-md-6 my-3 text-light">
+			<!-- классы ниже - наши классы - будем описывать в css самостоятельно -->
+			<h1 class="product_title">Aston Martin Vanquish Zagato</h1>
+			<h5 class="text-info fst-italic mb-4">50 000 $</h5>
+			<p class="product_desc">Описание продукта</p>
+			<!-- text-justify - выравнивание текста -->
+			<p class="text-justify product_text">Несколько лет тому назад в одном из своих поместий жил старинный русский барин, Кирила Петрович Троекуров. Его богатство, знатный род и связи давали ему большой вес в губерниях, где находилось его имение‰ Соседи рады были угождать малейшим его прихотям; губернские чиновники трепетали при его имени; Кирила Петрович принимал знаки подобострастия как надлежащую дань; дом его всегда был полон гостями, готовыми тешить его барскую праздность, разделяя шумные, а иногда и буйные его увеселения. Никто не дерзал отказываться от его приглашения или в известные дни не являться с должным почтением в село Покровское.</p>
+			<p class="text-justify product_text">Out of stock - Нет в наличии</p>
+		</div><!-- col 10 -->
+
+
+
+
+	</div><!-- row -->
+</div><!-- container -->
+{% endblock %}<!--  закрыли block content -->
