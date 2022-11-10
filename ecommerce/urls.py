@@ -15,19 +15,23 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include #импортировали всё
-from django.conf import settings #импортировали
-from django.conf.urls.static import static #импортировали
+from django.conf import settings #импортировали для того чтобы было видн media url and root
+from django.conf.urls.static import static #импортировали строчки кода используются для управления любыми медиафайлами включая виде
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('shop.urls')),#На пустой запрос Localhost, будет ссылаться в shop/urls.py
-]
+] 
+
+
+# + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+# Не работал debug - помоглво верхнняя строчка
 
 #Для обновление url-ов в Дебаг моде
 if settings.DEBUG:#if settings.DEBUG = True
     #в список путей будут добавлятся пути MEDIA_URL и MEDIA_URL
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_URL)
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 #аналогично для статик папки
 if settings.DEBUG:

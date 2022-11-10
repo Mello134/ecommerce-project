@@ -146,7 +146,7 @@ STATICFILES_DIRS = [ BASE_DIR / 'ecommerce/static/' ] #добавили спис
 STATIC_URL = 'static/'#изначально
 STATIC_ROOT = BASE_DIR / 'static'#добавили #в эту папку при collectstatic - django перемещает все статические файлы
 
-MEDIA_URL = '/media/' #добавили url - будет отображатся в браузере
+MEDIA_URL = 'media/' #добавили url - будет отображатся в браузере
 MEDIA_ROOT = BASE_DIR / 'static/media' #будет загружать медия в static/media
 
 # Default primary key field type
