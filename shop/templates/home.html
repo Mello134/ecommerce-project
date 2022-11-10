@@ -19,6 +19,8 @@
 		</div>	
 	</div>
 	
+	
+	
 
 	<!-- заголовок "Наша Продукция" -->
 	<!-- делает отступ вниз  -->
@@ -41,8 +43,8 @@
 		<div class="row">
 
 			<!-- Цикл с продуктами -->
-			<!-- запустили цикл 8 раз -->
-			{% for i in '12345678' %}
+			<!-- перебираем все продукты в продуктс -->
+			{% for product in products %}
 
 				<!-- col-9 ширина 9из12/mx-auto -центруем col/col-md-6 1столбец бцдет равен половине col-9(4.5)/col-lg-3 ещё раз поделили зачемто, проще смотреть по факту -->
 				<div class="col-9 mx-auto col-md-6 col-lg-3">
@@ -51,7 +53,8 @@
 						<!-- card - botstrap карточки/mb-4 - отступ вниз от карты/ -->
 						<div class="card mb-4">
 							<!-- card-img-top - картинка будет сверху карты, тоже bootstrap -->
-							<img class="card-img-top" src="{% static 'images/aston.jpg' %}">
+							<!-- ссылка класс Product, переменная image -->
+							<img class="card-img-top" src="{{ product.image.url }}" alt="{{ product.name }}">
 							
 
 							<!-- Заголовки к карточкам -->
@@ -60,10 +63,10 @@
 							<div class="card-footer d-flex justify-content-between" style="background: transparent; border-color: transparent;">
 								<!-- сам текст -->
 								<!-- .fw-weight-bolder - текст жирней/mb-0 - отступ вниз после текста -->
-								<p class="fw-weight-bolder mb-0">Астон</p>
+								<p class="fw-weight-bolder mb-0">{{ product.name }}</p>
 								<!-- цены -->
 								<!-- .fst-italic - курсивный текст/.text-info - голубой текст -->
-								<h5 class="text-info fst-italic">50 000 $</h5>
+								<h5 class="text-info fst-italic">{{ product.price }}$</h5>
 							</div><!-- карточка футер -->
 						</div><!-- карточка -->
 					</div><!-- див py-3 -->
