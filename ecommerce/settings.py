@@ -110,9 +110,27 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
-LANGUAGE_CODE = 'ru-Ru'
+# from django.utils import timezone #ДОБАВИЛ
+# timezone.localtime(timezone.now()) #ДОБАВИЛ
 
-TIME_ZONE = 'UTC'
+
+LANGUAGE_CODE = 'ru-Ru' #ПОМЕНЯЛ
+
+TIME_ZONE = 'Europe/Moscow' #ПОМЕНЯЛ
+
+
+#Москва попробуй GMT/GMT+4/UTC+4/'Europe/Moscow'
+# from django.utils import timezone
+# timezone.localtime(timezone.now())
+# TIME_ZONE = 'Europe/Moscow'
+
+# Тут некоторая сложность)
+# Во-первых, укажите в settings.py TIME_ZONE = 'Europe/Moscow'. 
+# Во-вторых, если вы используете сервер, настройте на нем также локальное время. 
+# В-третьих, если вы используете БД, которая поддерживает временную локализацию, 
+# также выставьте московское время.
+
+
 
 USE_I18N = True
 
@@ -127,6 +145,9 @@ STATICFILES_DIRS = [ BASE_DIR / 'ecommerce/static/' ] #добавили спис
 
 STATIC_URL = 'static/'#изначально
 STATIC_ROOT = BASE_DIR / 'static'#добавили #в эту папку при collectstatic - django перемещает все статические файлы
+
+MEDIA_URL = '/media/' #добавили url - будет отображатся в браузере
+MEDIA_ROOT = BASE_DIR / 'static/media' #будет загружать медия в static/media
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field

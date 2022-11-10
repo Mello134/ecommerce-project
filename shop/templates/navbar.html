@@ -1,0 +1,60 @@
+<a href="{% url 'home' %}">Домашняя страница</a>
+<a href="{% url 'product' %}">Описание товара</a>
+<a href="http://127.0.0.1:8000/admin/">Админка</a>	
+
+
+<!-- навбар весь --> 
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+<!-- Иконка брэнда и ссылка на дом страницу -->
+  	<a href="#" class="navbar-brand"><i class="material-symbols-sharp text-danger">token</i><span class="text-danger">ICA</span></a>
+
+  	<!-- кнопка navbar -->
+  	<button class="navbar-toggler bg-primary" data-bs-toggle="collapse" data-bs-target="#navbarid">
+  	<!-- иконка кнопки навбара -->
+  	<span class="navbar-toggler-icon"></span>
+  	</button>
+
+    <!-- сужение, расширение окна браузера (появляется убирается надписи навбара включая поиск)-->
+  	<div id="navbarid" class="collapse navbar-collapse justify-content-between">
+	    <!-- Навбар список (категории, контакты, описание товара) -->
+	  	<ul class="navbar-nav">
+	  		<!-- Ссылка категории и вспылвание других категорий 1 2 3 4 5 -->
+	        <li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle text-light text-uppercase px-3" href="" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Категории</a>
+				<!-- То что будет всплывать -->
+				<div class="dropdown-menu">
+					<a class="dropdown-item" href="">Категория 1</a>
+					<a class="dropdown-item" href="">Категория 2</a>
+					<a class="dropdown-item" href="">Категория 3</a>
+					<a class="dropdown-item" href="">Категория 4</a>
+					<a class="dropdown-item" href="">Категория 5</a>
+				</div>
+			</li><!-- закрыли li - .nav-item dropdown -->
+			<!-- просто ссылка на контакты -->
+	  		<li class="nav-item">
+	  			<a class="nav-link text-light text-uppercase fw-weight-bolder px-3" href="">Контакты</a>
+	  		</li>
+	  		<!-- просто ссылка на product -->
+	  		<li class="nav-item">
+	  			<a class="nav-link text-light text-uppercase fw-weight-light px-3" href="">Описание товара</a>
+	  		</li> 			
+	  	</ul>
+
+	  	<!-- форма всплывающего окна -->
+	  	<form class="form-inline">
+	  		<div class="input-group">
+	  			<!-- окошко поиска, с серой надпиью -->
+	  			<input type="text" placeholder="Что ищете?">
+	  			<div>
+	  				<!-- кнопка для поиска -->
+	  				<button class="bg-dark" style="border-style: double; border-color: #2139D4;">
+	  					<!-- иконка -->
+	  					<i class="material-symbols-sharp text-primary bg-dark">search</i>
+	  				</button>
+	  			</div>
+	  		</div>
+	  	</form>
+	  </div>
+
+<!-- Конец навбвра -->
+</nav>

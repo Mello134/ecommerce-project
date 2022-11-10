@@ -23,3 +23,12 @@ body {
 .product_text {
 	padding-right: 20px;/*элемента устанавливает значение поля от правого края элемента*/
 }
+
+/*для иконки*/
+.material-symbols-sharp {
+	 font-variation-settings: 
+	'FILL' 0,
+	'wght' 200,
+	'GRAD' -25,
+	'opsz' 48,
+}

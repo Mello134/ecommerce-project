@@ -14,9 +14,22 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path, include #импортировали всё
+from django.conf import settings #импортировали
+from django.conf.urls.static import static #импортировали
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('shop.urls')),#На пустой запрос Localhost, будет ссылаться в shop/urls.py
 ]
+
+#Для обновление url-ов в Дебаг моде
+if settings.DEBUG:#if settings.DEBUG = True
+    #в список путей будут добавлятся пути MEDIA_URL и MEDIA_URL
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_URL)
+
+#аналогично для статик папки
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
