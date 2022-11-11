@@ -1,5 +1,4 @@
 <a href="{% url 'home' %}">Домашняя страница</a>
-<a href="{% url 'product' %}">Описание товара</a>
 <a href="http://127.0.0.1:8000/admin/">Админка</a>	
 
 
@@ -25,7 +24,7 @@
 
 				<!-- То что будет всплывать -->
 				<div class="dropdown-menu">
-					для оторажения в меню пункта все машины, при  нажатии будет открывать полную homepage
+					<!-- для оторажения в меню пункта все машины, при  нажатии будет открывать полную homepage -->
 					<a class="dropdown-item text-danger" href="{% url 'home' %}">Все машины</a>
 					{% for Category in links %}
 					<a class="dropdown-item" href="{{ Category.get_url }}">

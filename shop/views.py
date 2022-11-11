@@ -14,11 +14,20 @@ def home(request, category_slug=None):
 		products = Product.objects.filter(category=category_page, available=True)
 	else:#если category_slug пустой
 		products = Product.objects.all().filter(available=True)
-
-
-
-
 	return render(request, 'home.html', {'category':category_page, 'products':products})#путь к ecommerce/shop/templates/home.html
 
-def product(request):
-	return render(request, 'product.html')
+def product(request, category_slug, product_slug):
+	#category__slug - здесь получис slug из Сategory
+	product = Product.objects.get(category__slug=category_slug, slug=product_slug)
+	#exept - это исключения. Exception - класс исключений в python
+	# raise - привликать, поднимать
+	#код выполнится если будут исключения
+	
+
+
+	# except Exception as e: #SyntaxError: invalid syntax-------------------------------------------------
+	# 	raise e #--------------------------------------------------------------------------------------------------------------------------------------
+	
+
+	return render(request, 'product.html', {'product': product})
+ 
