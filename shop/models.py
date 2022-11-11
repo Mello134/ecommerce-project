@@ -1,4 +1,5 @@
-from django.db import models
+from django.db import models #импортировали все финкции свойственные моделям django
+from django.urls import reverse #добавили чтобы получать функицию по url категориям
 
 # Create your models here.
 
@@ -32,7 +33,11 @@ class Category(models.Model):
 		verbose_name = "Категория" #имя в единственном числе
 		verbose_name_plural = "Категории" #имя во множественном числе
 
-
+	#для отображени  url  в категориях navbar
+	def get_url(self):
+		#products_by_category из shop/urls.py
+		#args=[self.slug] - получение слага, не понятно как
+		return reverse('products_by_category', args=[self.slug])
 
 
 

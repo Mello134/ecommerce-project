@@ -12,12 +12,15 @@
 <!-- начало контента из base.html -->
 {% block content %}
 
+	<img style="min-width: 100%; height: auto;" src="{% static 'images/home_img.jpg' %}">
+	
+
 	<!-- контейнер во всю ширину -->
-	<div class="container-fluid">
+<!-- 	<div class="container-fluid">
 		<div class="row">
 			<img class="img-fluid" src="{% static 'images/home_img.jpg' %}">
 		</div>	
-	</div>
+	</div> -->
 	
 	
 	
@@ -31,7 +34,7 @@
 				<!-- col - ширина 10 из 12/mx-auto - по центру весь блок col/my-2 - отступы сверху и снизу-2/text-center - центрует текст относительно своего блока(у нас col)  -->
 				<div class="col-10 mx-auto my-2 text-center">
 					<!--text-capitalize - все первый буквы заглавные -->
-					<div class="fw-weight-lighter"><h1 class="text-capitalize text-light">В наличии:</h1></div
+					<div class="fw-weight-lighter"><h1 class="product_title text-light">В наличии:</h1></div
 				</div>
 			</div><!-- закрывает row -->
 		</div> <!-- закрывает conteiner -->
@@ -64,6 +67,7 @@
 								<!-- сам текст -->
 								<!-- .fw-weight-bolder - текст жирней/mb-0 - отступ вниз после текста -->
 								<p class="fw-weight-bolder mb-0">{{ product.name }}</p>
+								<p>&nbsp;&nbsp;</p>
 								<!-- цены -->
 								<!-- .fst-italic - курсивный текст/.text-info - голубой текст -->
 								<h5 class="text-info fst-italic">{{ product.price }}$</h5>
