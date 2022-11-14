@@ -30,4 +30,15 @@ def product(request, category_slug, product_slug):
 	
 
 	return render(request, 'product.html', {'product': product})
+
+
+
+
+
+
+
+def cart(request):
+	return render(request, 'cart.html')
+
+
  

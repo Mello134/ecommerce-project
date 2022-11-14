@@ -1,0 +1,22 @@
+.cart-table {
+/*	по сути ширина - минимальная ширина*/
+	min-width: 480px;
+/*	размер текта*/
+	font-size: 14px; 
+}
+
+.cart-thead{
+/*	шрифт толщина*/
+	font-weight: normal;
+/*заглавные буквы*/
+text-transform: uppercase;
+/*интервал между символами*/
+letter-spacing: .2em;
+/*цвет фона/ !important - это приоритетность*/
+background-color: #212529 !important;
+}
+
+.cart-icon{
+	text-decoration: none;
+/*	color: ; не хочу менять*/
+}
