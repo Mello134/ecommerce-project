@@ -38,7 +38,7 @@
 			{% if Product.stock <= 0 %}
 			<p class="text-justify product_text">Нет в наличии</p>
 			{% else %}
-			<a href="">Добавить в Корзину</a>
+			<a href="{% url 'add_cart' product.id %}">Добавить в Корзину</a>
 			{% endif %}
 
 

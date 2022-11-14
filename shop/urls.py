@@ -8,5 +8,6 @@ urlpatterns = [
     path('', views.home, name='home'),#пустой url к функции home в shop/views.py, присвоили имя home
     path('category/<slug:category_slug>', views.home, name='products_by_category'),#путь URL по нашему слагу localhost/../имя slug-a
     path('category/<slug:category_slug>/<slug:product_slug>', views.product, name='product_detail'),
-    path('cart', views.cart, name='cart'),
+    path('cart', views.cart_detail, name='cart_detail'),
+    path('cart/add/<int:product_id>', views.add_cart, name='add_cart'),
 ]

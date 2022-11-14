@@ -12,6 +12,29 @@
 <!-- начало контента из base.html -->
 {% block content %}
 
+
+	<!-- #проверяем есть ли в корзине какието элементы -->
+	{% if not cart_items %}
+	<div class="text-center">
+		<!-- div покажется если корзина будет пустой -->
+		<br>
+		<h1 class="text-center product_title">
+			Ваша корзина пуста
+		</h1>
+		<br>
+		<p class="text-center">
+			Нажми
+			<a href="{% url 'home' %}">
+				сюда
+			</a>
+			, чтобы вернутся к покупкам
+		</p>
+	</div>
+
+
+
+
+	{% else %}
 	<h1>Корзина</h1>
 	<div class="text-center text-light">
 		<br>
@@ -32,31 +55,43 @@
 						</th>
 					</tr>
 				</thead>
-				{% for i in '123' %}
+				{% for cart_item in cart_items %}
 				<tr>
 					<td>
-						<a href="">
-							<img src="{% static 'images/lexus.jpg' %}" width="100" height="100">
+						<a href="cart_item.product.get_url">
+							<img src="{{ cart_item.product.image.url }}" width="100" height="100">
 						</a>
 					</td>
 					<td class="text-start">
-						Название
+						{{ cart_item.product.name }}
 						<br>
-						SKU: 7
+						SKU: {{ cart_item.product.id }}
 						<br>
-						Цена заштуку: 1 000 000 $
+						Цена за штуку: {{ cart_item.product.price }}
 						<br>
-						Количество товара: 4 х 1 000 000 $
+						Количество товара: {{ cart_item.quantity }} Х {{ cart_item.product.price }}
 					</td>
 					<td>
-						4 000 000 $
+						$ {{ cart_item.sub_total }}
 					</td>
+
+					{% if cart_item.quantity < cart_item.product.stock %}
+
 					<td>
-						<a href=""><span class="material-symbols-sharp cart-icon">shopping_cart_checkout</span></a>
+						<a href="{% url 'add_cart' cart_item.product.id %}"><span class="material-symbols-sharp cart-icon">shopping_cart_checkout</span></a>
 						<a href=""><span class="material-symbols-sharp cart-icon">indeterminate_check_box</span></a>
 						<a href=""><span class="material-symbols-sharp cart-icon">delete</span></a>
-
 					</td>
+
+					{% else %}
+
+					<td>
+						<a href=""><span class="material-symbols-sharp cart-icon">indeterminate_check_box</span></a>
+						<a href=""><span class="material-symbols-sharp cart-icon">delete</span></a>
+					</td>
+
+					{% endif %}
+
 				</tr>
 				{% endfor %}
 			</table>
@@ -82,14 +117,14 @@
 					<!-- -------------------------------------------------------------------------------------------------- -->
 					<tr>
 						<td class="text-start">
-							Сумма для товаров в корзине: <strong>4 000 000 $</strong>
+							Сумма для товаров в корзине: <strong>$ {{ total }}</strong>
 						</td>
 					</tr>
 				</tbody>
 			</table>
 
-			<div>
-				<a href="" style="text-decoration: none;">
+			<div class="mx-auto">
+				<a href="{% url 'home' %}" style="text-decoration: none;">
 					<div class="d-grid gap-2">
 						<button type="button" class="btn btn-primary btn-lg">
 							<h2>Назад в магазин</h2>
@@ -99,6 +134,8 @@
 			</div>
 		</div>
 	</div>
+	{% endif %}
+
 
 
 

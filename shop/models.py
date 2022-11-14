@@ -40,7 +40,6 @@ class Category(models.Model):
 		return reverse('products_by_category', args=[self.slug])
 
 
-
 	#для того чтобы когда мы каждый раз будем обращатся к объекту категории, будет показыватся имя - название поля
 	#Метод __str__() - вызывается всякий раз, когда вы вызываете str() для объекта.
 	#self - собственный- личный
@@ -48,8 +47,6 @@ class Category(models.Model):
 
 		#Будет показывать имя модели (name переменная, указали выше)
 		return self.name
-
-
 
 #модель Товаров/продуктов
 class Product(models.Model):
@@ -84,7 +81,6 @@ class Product(models.Model):
 
 	#auto_now - Автоматически устанавливать текущую дату каждый раз, когда объект сохраняется.
 	updated = models.DateTimeField(auto_now=True)
-
 	
 	# Отображение в админке класса
 	class Meta:
@@ -92,11 +88,8 @@ class Product(models.Model):
 		verbose_name = "Продукт" #имя в единственном числе
 		verbose_name_plural = "Продукты" #имя во множественном числе
 
-
 	def get_url(self):
 		return reverse('product_detail', args=[self.category.slug, self.slug])
-
-
 
 	def __str__(self):
 		return self.name
@@ -104,3 +97,44 @@ class Product(models.Model):
 
 
 
+
+
+
+
+class Cart(models.Model):
+	cart_id = models.CharField(max_length=250, blank=True)
+	date_added = models.DateField(auto_now_add=True)
+	class Meta:
+		ordering = ['date_added'] #сортировка
+		db_table = 'Cart' #название таблицы
+
+
+		def __str__(self): #репезентация объекта
+			return self.cart_id
+
+
+
+
+
+
+
+
+
+#CartItem - информация об одном продукте, об одном товаре добавленном в карзину
+class CartItem(models.Model):
+	product = models.ForeignKey(Product, on_delete=models.CASCADE)#отношение к модели Product
+	cart = models.ForeignKey(Cart, on_delete=models.CASCADE)
+	quantity = models.IntegerField()#количество товаров в корзине
+	active = models.BooleanField(default=True)
+
+	class Meta:
+		db_table = 'CartItem'
+
+
+	#метод будет высчитывать полную сумму товаров в зависимости от цены и количества в корзине
+	def sub_total(self):
+		#прайс из Product * колво в корзине
+		return self.product.price * self.quantity
+
+	def __str__(self): #репезентация объекта
+		return self.product
