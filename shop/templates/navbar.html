@@ -41,8 +41,19 @@
 	  		</li>
 	  		<!-- просто ссылка на product -->
 	  		<li class="nav-item">
-	  			<a class="nav-link text-light text-uppercase fw-weight-light px-3" href="">Описание товара</a>
-	  		</li> 			
+	  			<a a class="nav-link text-light text-uppercase fw-weight-bolder px-3" href="">О нас</a>
+	  		</li>
+	  		
+
+	  		
+	  		{% if item_count > 0 %}
+	  		<li class="nav-item">
+	  		<!-- количество товара в корзине -->
+	  			<a class="nav-link text-light text-uppercase fw-weight-light px-3" href="{% url 'cart_detail' %}">
+	  				<span class="material-symbols-sharp cart-icon">shopping_cart_checkout</span>({{item_count}})
+	  			</a>
+	  		</li>
+	  		{% endif %} 			
 	  	</ul>
 
 	  	<!-- форма всплывающего окна -->

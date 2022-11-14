@@ -15,7 +15,7 @@
 
 	<!-- #проверяем есть ли в корзине какието элементы -->
 	{% if not cart_items %}
-	<div class="text-center">
+	<div class="text-center text-light">
 		<!-- div покажется если корзина будет пустой -->
 		<br>
 		<h1 class="text-center product_title">
@@ -35,7 +35,6 @@
 
 
 	{% else %}
-	<h1>Корзина</h1>
 	<div class="text-center text-light">
 		<br>
 		<!-- product_title наш клас css -->
@@ -79,15 +78,15 @@
 
 					<td>
 						<a href="{% url 'add_cart' cart_item.product.id %}"><span class="material-symbols-sharp cart-icon">shopping_cart_checkout</span></a>
-						<a href=""><span class="material-symbols-sharp cart-icon">indeterminate_check_box</span></a>
-						<a href=""><span class="material-symbols-sharp cart-icon">delete</span></a>
+						<a href="{% url 'cart_remove' cart_item.product.id %}"><span class="material-symbols-sharp cart-icon">indeterminate_check_box</span></a>
+						<a href="{% url 'cart_remove_product' cart_item.product.id %}"><span class="material-symbols-sharp cart-icon">delete</span></a>
 					</td>
 
 					{% else %}
 
 					<td>
-						<a href=""><span class="material-symbols-sharp cart-icon">indeterminate_check_box</span></a>
-						<a href=""><span class="material-symbols-sharp cart-icon">delete</span></a>
+						<a href="{% url 'cart_remove' cart_item.product.id %}"><span class="material-symbols-sharp cart-icon">indeterminate_check_box</span></a>
+						<a href="{% url 'cart_remove_product' cart_item.product.id %}"><span class="material-symbols-sharp cart-icon">delete</span></a>
 					</td>
 
 					{% endif %}
@@ -135,12 +134,5 @@
 		</div>
 	</div>
 	{% endif %}
-
-
-
-
-
-
-
 <!-- конец контента из base.html -->
 {% endblock %}
