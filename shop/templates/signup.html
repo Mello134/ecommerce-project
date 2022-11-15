@@ -4,6 +4,10 @@
 <!-- загрузили статические файлы -->
 {% load static %}
 
+<!-- загрузили crispy_forms -из settings.py -->
+{% load crispy_forms_tags %}
+
+
 <!-- название страницы, смотри в title base.html -->
 {% block title %} 
 	Создать новый аккаунт
@@ -27,9 +31,9 @@
 					<p>
 						Пожалйста введите слудующую информацию, для создания нового аккакунта.
 					</p>
-					<form action="post">
+					<form method="post">
 						{% csrf_token %}
-						<p>{{ form }}</p>
+						<p>{{ form | crispy }}</p>
 						<button type="submit" name="button" class="btn btn-secondary">
 							Создать
 						</button>

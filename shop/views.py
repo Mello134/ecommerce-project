@@ -122,11 +122,11 @@ def cart_remove_product(request, product_id): #удалить полностью
 def signUpView(request):
 	#POST- это метод запроса
 	if request.method == 'POST':
-		form = SignUpForm(request.Post)
+		form = SignUpForm(request.POST)
 		if form.is_valid(): #проверяем форму, valid-действительность
 			form.save() #В этом случае сохраняем форму
 			#мы будем находить пользователя из базы данных по username
-			username = form.clean_data.get('username')
+			username = form.cleaned_data.get('username')
 			signup_user  = User.objects.get(username=username)
 			#помещаем usera - в группу которую мы создали в админке 'User'
 			user_group = Group.objects.get(name='User')

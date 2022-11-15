@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'shop',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -155,3 +156,6 @@ MEDIA_ROOT = BASE_DIR / 'static/media' #будет загружать медия
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4' #сделал bootstrap4 - с 5 не работает - уточни как делать для 5

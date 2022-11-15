@@ -15,5 +15,9 @@ class SignUpForm(UserCreationForm):
 	class Meta:# при создани -пользователь будет сохранятся в таблице User
 		model = User
 		#fields - поля
-		fields = ('first_name', 'last_name', 'username', 'password1', 'password2')
+		fields = ('first_name', 'last_name', 'username', 'password1', 'password2', 'email')
+
+
+
+
 
