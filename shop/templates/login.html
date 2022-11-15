@@ -1,0 +1,71 @@
+<!-- берём из base.html -->
+{% extends 'base.html' %} 
+
+<!-- загрузили статические файлы -->
+{% load static %}
+
+<!-- загрузили crispy_forms -из settings.py -->
+{% load crispy_forms_tags %}
+
+<!-- название страницы, смотри в title base.html -->
+{% block title %} 
+	Авторизация
+{% endblock %}
+
+<!-- начало контента из base.html -->
+{% block content %}
+
+	<div class="container text-light">
+		<br>
+		<h1 class="product_title text-center">
+			Авторизуйтесь или создайте Новый Аккаунт
+		</h1>
+		<div class="row">
+			<div class="col-12 col-sm-12 col-lg-6 text-center custom_div bg-dark">
+				<br>
+				<h2 class="product_title">
+					Новый пользователь
+				</h2>
+				<br>
+				<a href="{% url 'signup' %}" class="btn btn-secondary">Создать нового пользователя</a>
+			</div> <!-- col -->
+			<div class="col-12 col-sm-12 col-lg-6 text-center bg-dark">
+				<br>
+				<h2 class="product_title">
+					Только для зарегестрированных пользователей
+				</h2>
+				<form method="post">
+					{% csrf_token %}
+					<p>{{ form | crispy }}</p>
+					<button type="submit" name="button" class="btn btn-secondary">
+						Войти
+					</button>	
+				</form>
+
+<!-- 					<form method="post">
+						{% csrf_token %}
+						<p>{{ form | crispy }}</p>
+						<button type="submit" name="button" class="btn btn-secondary">
+							Создать
+						</button>
+					</form>
+ -->
+
+
+
+
+
+
+
+				<br>
+			</div><!-- col -->
+			<br>
+		</div><!-- row -->
+		<br>
+	</div><!-- container -->
+	<br>
+
+
+
+<!-- конец контента из base.html -->
+{% endblock %}

@@ -5,7 +5,9 @@ from .models import Category, Product, Cart, CartItem
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.models import Group, User
 from .forms import SignUpForm
-
+from django.contrib.auth.forms import AuthenticationForm 
+from django.contrib.auth import login, authenticate
+from django.contrib.auth import logout
 
 
 
@@ -119,8 +121,7 @@ def cart_remove_product(request, product_id): #удалить полностью
 	return redirect('cart_detail')
 
 
-def signUpView(request):
-	#POST- это метод запроса
+def signUpView(request):#для фсоздание аккаунта
 	if request.method == 'POST':
 		form = SignUpForm(request.POST)
 		if form.is_valid(): #проверяем форму, valid-действительность
@@ -135,6 +136,31 @@ def signUpView(request):
 		form = SignUpForm() #присваиваем пустую форму
 	#будет выводится шаблон signup.html, и передовать переменную form в этот шаблон
 	return render(request, 'signup.html', {'form':form})
+
+
+
+def loginView(request): #для залогинивания
+	if request.method == 'POST': #если метод POST
+		form = AuthenticationForm(data=request.POST)#здесь есть data а в signUpView почемуто нет
+		if form.is_valid():
+			username = request.POST['username']
+			password = request.POST['password']
+			user = authenticate(username=username, password=password)
+			if user is not None: #если user сушествует
+				login(request, user)
+				return redirect('home')#направлемя домой path name='home'
+			else: #если юзера не сушествует
+				return redirect('signup')#направляем path('account/create/' - name='signup'
+	else: #если метод не POST
+		form = AuthenticationForm()
+	return render(request, 'login.html', {'form':form})
+
+
+def signoutView(request): #Для выхода из аккаунта
+	logout(request)#это втроенная функция django
+	return redirect('login') #path('account/login/', views.loginView, name='login')
+
+
 
 
 

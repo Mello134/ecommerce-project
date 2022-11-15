@@ -39,11 +39,41 @@
 	  		<li class="nav-item">
 	  			<a class="nav-link text-light text-uppercase fw-weight-bolder px-3" href="">Контакты</a>
 	  		</li>
-	  		<!-- просто ссылка на product -->
+	  		<!-- просто ссылка -->
 	  		<li class="nav-item">
 	  			<a a class="nav-link text-light text-uppercase fw-weight-bolder px-3" href="">О нас</a>
 	  		</li>
-	  		
+	  		<!-- залогинен ли пользователь?  если да -->
+	  		{% if request.user.is_authenticated and request.user.first_name %}
+
+	  		<!-- Имя пользователя если вошёл-->
+	  		<li class="nav-item">
+	  			<span class="nav-link text-light text-uppercase fw-weight-bolder px-3">
+	  				Добро пожаловать,  {{ request.user.first_name }}!<span class="material-symbols-sharp">skateboarding</span>
+	  			</span>
+	  		</li>
+
+	  		<!-- иконка для выхода-->
+	  		<li class="nav-item">
+	  			<a class="nav-link text-light text-uppercase fw-weight-bolder px-3" href="{% url 'signout' %}">
+	  				Выйти<span class="material-symbols-sharp">logout</span>
+	  			</a>
+	  		</li>
+	  		{% else %}
+	  		<!-- зарегестрироватся-->
+	  		<li class="nav-item">
+	  			<a class="nav-link text-light text-uppercase fw-weight-bolder px-3" href="{% url 'signup' %}">
+	  				Загегестрироватья<span class="material-symbols-sharp">app_registration</span>
+	  			</a>
+	  		</li>
+	  		<!-- Войти-->
+	  		<li class="nav-item">
+	  			<a class="nav-link text-light text-uppercase fw-weight-bolder px-3" href="{% url 'login' %}">
+	  				Войти<span class="material-symbols-sharp">login</span>
+	  			</a>
+	  		</li>
+	  		{% endif %}
+
 
 	  		
 	  		{% if item_count > 0 %}
