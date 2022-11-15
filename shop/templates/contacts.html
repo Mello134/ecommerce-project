@@ -1,0 +1,42 @@
+<!-- берём из base.html -->
+{% extends 'base.html' %} 
+
+<!-- загрузили статические файлы -->
+{% load static %}
+
+<!-- название страницы, смотри в title base.html -->
+{% block title %} 
+	Домашняя страница
+{% endblock %}
+
+<!-- начало контента из base.html -->
+{% block content %}
+
+
+	<div class="col-10 mx-auto col-md-8 my-3 text-light text-center">
+			
+		<!-- классы ниже - наши классы - будем описывать в css самостоятельно -->
+		<h4 class="product_title">International Contract Agency</h4>
+		<br>
+		<h5 class="product_title">наши контакты:</h5>
+
+		<div class="product_desc">
+			<p>
+				<br>
+				Телефон: +7(904)756-23-19
+				<br>
+				email 1: elprojectasr@yandex.ru
+				<br>
+				email 2: elproject220@yandex.ru
+			</p>
+		</div>
+
+	</div><!-- col 10 -->
+
+
+
+
+
+
+<!-- конец контента из base.html -->
+{% endblock %}

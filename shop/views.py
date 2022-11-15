@@ -163,8 +163,11 @@ def signoutView(request): #Для выхода из аккаунта
 
 
 
+def contacts(request):#контакты
+	return render(request,'contacts.html')
 
-
+def about(request):#о нас
+	return render(request,'about.html')
 
 
 

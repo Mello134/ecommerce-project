@@ -1,5 +1,5 @@
-<a href="{% url 'home' %}">Домашняя страница</a>
-<a href="http://127.0.0.1:8000/admin/">Админка</a>	
+<!-- <a href="{% url 'home' %}">Домашняя страница</a>
+<a href="http://127.0.0.1:8000/admin/">Админка</a> -->	
 
 
 <!-- навбар весь --> 
@@ -37,11 +37,11 @@
 			</li><!-- закрыли li - .nav-item dropdown -->
 			<!-- просто ссылка на контакты -->
 	  		<li class="nav-item">
-	  			<a class="nav-link text-light text-uppercase fw-weight-bolder px-3" href="">Контакты</a>
+	  			<a class="nav-link text-light text-uppercase fw-weight-bolder px-3" href="{% url 'contacts' %}">Контакты</a>
 	  		</li>
 	  		<!-- просто ссылка -->
 	  		<li class="nav-item">
-	  			<a a class="nav-link text-light text-uppercase fw-weight-bolder px-3" href="">О нас</a>
+	  			<a a class="nav-link text-light text-uppercase fw-weight-bolder px-3" href="{% url 'about' %}">О нас</a>
 	  		</li>
 	  		<!-- залогинен ли пользователь?  если да -->
 	  		{% if request.user.is_authenticated and request.user.first_name %}

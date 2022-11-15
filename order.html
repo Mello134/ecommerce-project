@@ -1,0 +1,1534 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Order</title>
+	<style type="text/css">
+		.ordrdiv {
+			background: rgb(173, 196, 255) ;
+		}
+		body {
+			background: rgb(8, 0, 96);
+		}
+		.boldertext {
+			font-weight: bolder;
+			font-size: 26px;
+		}
+		pre {
+			background: white;
+		}
+	</style>
+</head>
+<body>
+
+	<h1><a href="https://bootstrap-5.ru/articles/cheatsheet5/">ШПАРГАЛКА BOOTSTRAP5</a></h1>
+
+	<div class="ordrdiv">
+		<h1>Порядок работы</h1>
+
+
+		<h3>Myfirstproject</h3>
+		<ol>
+			<li>Устанавливаем Python в Windows</li>
+			<li>Устанавливаем Django в Windows</li>
+			<li>Устанавливаем Git в Windows</li>
+			<li>Устанавливаем текстовые редакторы кода в Windows:
+				<ul>
+					<li>Sublime text - для всего и html+css</li>
+					<li>IntelliJ IDEA  - Работа с кодами Python</li>
+					<li>PyCharm - Работа с кодами Python</li>
+				</ul>
+			</li>
+			<li>Создаём папку, где будет проект</li>
+			<li>В папку устанавливаем django (manage.py, init.py url.py и тд):
+				<ul>
+					<li>октрываем командную строку cmd</li>
+					<li>cd C:\Хранилище\Разное\My it projects\my vice versa\папка где будет проект</li>
+					<li>django-admin startproject имя проекта</li>
+					<li>для старта сервера на http://127.0.0.1:8000/ - python manage.py runserver</li>
+					<li>для остановки сервера - CTRL + C - в командной строке
+				</ul>
+			</li>
+			<li>В папке проекта name-root/ можно сразу создать папку templates - где в последствии будем хранить шаблоны и html страницы</li>
+			<li>В Sublime text - Views/Side Bar/Show Side bar - чтобы показать слева папки и файлы.</li>
+			<li>В Sublime text - открываем папку с проектом</li>
+			<li>Чтобы не запутаться переименовываем корнемую папку в имяпроекта-root</li>
+			<li>Создаём файл views.py - в нём будем хранить какието функции def</li>
+			<li>импортируем из джанго HttpResponse - from django.http import HttpResponse
+				<br>request - это запрос url. response - это ответ.
+			</li>
+			<li>в views.py - создаём функцию эбаут:
+				<br><pre>def about(request):
+				<br>    return HttpResponse('Это about страница')</pre>
+			</li>
+
+			<li>в urls.py - from . views (из корневой папки импортируем модуль или наш файл views с нашими функциями функциями) </li>
+			<li>в urls.py - в список urlpatterns добавляем новый путь. ....., path('about/', views.about)  - путь к функции about из файла-модуля views</li>
+
+			<li>Аналогично можно отправлять не просто текс а шаблоны, отдельные html страницы. Для этого мы создали папку templates</li>
+			<li>В settings.py в TEMPLATES = [{ 'DIRS': ['templates'],  - мы указали в какой папке django будет искать шаблоны</li>
+			<li>в views.py - from django.shortcuts import render - импортирую функуию render. Чтобы можно было в своих функциях ссылаться на шаблоны</li>
+			<li>Создаём функцию home. Которая в ответ на request будет ссылаться на шаблон home.html
+				<pre>def home(request):
+					<br>    return render(request, 'home.html')
+				</pre>
+			</li>
+			<li>К предыдущему пункут, можно добалять ещё параметры. словарь {'Ключ':'значение'}
+				<pre>def home(request):
+					<br>    return render(request, 'home.html', {'greeting':'Привет!'})
+				</pre>
+			</li>
+			<li>В шаблоне html home.html - указывыем ключ в {{ключ}} - {{greating}} - на странице выведется значение ключа Привет!</li>
+			<li>Чтобы домашняя страница открывалась без слеша а стразу на http://127.0.0.1:8000/
+				<br>в urls.py делаем path('', views.home) - тоесть пустые кавычки без home
+			</li>
+		</ol>
+
+
+		<h3>Vice Versa</h3>
+		<ol>
+			<li>В cmd переходим в папку проектов</li>
+			<li>Создаём новый проект - django-admin startproject myvice</li>
+			<li>Внешнюю папку переименовываем в myvice-root чтобы не запутаться</li>
+			<li>В cmd переходим в myvice-root</li>
+			<li>Запускаем сервер - python manage.py runserver</li>
+			<li>Проверяем в браузере - http://127.0.0.1:8000/</li>
+			<li>Для остановки локального сервера в cmd - CTRL+C</li>
+			<li>Сразу в папке myvice-root создаём папку шаблонов templates</li>
+			<li>В папке шаблонов сразу создаём home.html</li>
+			<li>в папке mevice создаём view.py. В нём будем писать функции</li>
+			<li>urls.py - импортируем модуль-файл views.py- from . import views</li>
+			<li>urls.py - можно удалить админку полностью, но не обязательно</li>
+			<li>views.py - импортируем функцию render - from django.shortcuts import render</li>
+			<li>views.py - создаём функцию home
+				<pre>def home(request):
+					<br>    return render(request, 'home.html')
+			</li>
+			<li>settings.py - TEMPLATES = [{'DIRS': ['templates'] - указываем где искать шаблоны</li>
+			<li>urls.py - path('', views.home) - путь к домашней странице</li>
+			<li>home.html - создаём форму -textarea cols="50" rows="10" name='usertext'--/textarea</li>
+			<li>Создаём кнопку -input type="submit" value="Реверсировать текст!-</li>
+			<li><div class="boldertext">Далее работа с git:</div>
+				<ul>
+					<li>открываем git-cmd.exe - командная строка git</li>
+					<li>cd C:\Хранилище\Разное\My it projects\myvice-root</li>
+					<li>останавливаем сервер ctrl+c в cmd windows</li>
+					<li>git init - установили в папку git</li>
+					<li>git status - смотрим что файлы не отслеживаются</li>
+					<li>git add . - добавили все файлы папки для отслеживания </li>
+					<li>git status - смотрим что теперь файлы отслеживаются</li>
+					<li>git commit -m "Имя коммита дата" </li>
+					<li>изменяем что то в самом проекте</li>
+					<li>git status - смотрим какие файлы изменились</li>
+					<li>git add . - добавили все файлы с изменениями</li>
+					<li>git commit -m "что зименили например дата"</li>
+					<li>ЕСЛИ ПРОЕКТ слёг, то можно вернутся к коммиту рабочего состояния</li>
+					<li>отправляем на github в репозиторий, в созданный там проект
+						<pre>git remote add origin https://github.com/Mello134/myvice.git
+							<br>git branch -M main
+							<br>git push -u origin main
+						</pre>
+					</li>
+					<li>Скачать: в cmd git -  сd.. - например desktop </li>
+					<li>git clone https://github.com/Mello134/myvice.git - ссылку берём на самом github</li>
+					<li>Вся папка на рабочем столе готово!</li>
+				</ul>
+			</li>
+			
+			<li>Саздаём путь к реверс. В urls.py - path('reverse/', views.reverse)</li>
+			<li>Создаём файл в templates reverse.html</li>
+			<li>views.py - создаём функцию reverse:
+				<pre>def reverse(request):
+					<br>    return render(request, 'reverse.html')
+			</li>
+			<li>home.html в -form action='путь урл из path'- 
+				<pre>-form action="reverse"-</pre>
+				<p>Но этот подход не очень хорош, так как путь может изменится или не так ввести могут. Для этого обращаемтся не к самому url а к названю url
+					<pre>-form action="{% url 'reverse' %}"-</pre>
+					<br>А в urls.py в path указываем третий параметр - path('reverse/', views.reverse, name='reverse')
+				</p>
+			</li>
+			<li>в home.html в textarea(поле для ввода) есть параметр имя = 'usertext'</li>
+			<li>view.py в функуции ревёрс - user_text = request.GET['usertext']
+				<br>GET это встроенная функция
+				<br> test_text = request.GET['usertext'] - print(test_text) - в командной строке будет выводится введённый текст!
+			</li>
+			<li>в return добавляем ещё параметр, словарь{'ключ':значение}- по этому ключу сможем получать информацию в шаблоне, в html</li>
+			<li>Чтобы обратится к этому ключу и получить значениме в reverse.html - {{usertext}} - {{название ключа}}</li>
+			<li>views.py  - функция reverse - добавляем ещё переменную - reversed_text = user_text[::-1] - это ревёрс текста в питоне.</li>
+			<li>в ретурне обавляем ещё пару ключ и значение -<br>return render(request, 'reverse.html', {'usertext':user_text, 'reversedtext': reversed_text})</li>
+			<li>Чтобы обратится к этому ключу и получить значениме в reverse.html - {{reversedtext}} - {{название ключа}}</li>
+			<li>views.py  - функция reverse - добавляем ещё переменную - count_element = len(user_text.split()) - получим количество слов в строке в питоне.</li>
+			<li>в ретурне добавляем ещё пару ключ и значение -<br>return render(request, 'reverse.html', {'usertext':user_text, 'reversedtext': reversed_text, 'countelement': count_element})</li>
+			<li>Чтобы обратится к этому ключу и получить значениме в reverse.html - {{countelement}} - {{название ключа}} - то что в скобках можно вставлять внутри текста, между текста внутри тега, например в заголовке!</li>
+		</ol>
+
+
+
+		<h3>My Blog</h3>
+		<ol>
+			<li>Создали проект в папке проектов</li>
+			<li>Внешнюю папку переименовали -root</li>
+			<li>whimsical wireframes - сайт для создания набросков страниц<br>делаем наброски home blog и blog page<br>
+				<a href="https://whimsical.com/>">whimsical.com</a></li>
+			<li>virtenv\Scripts\activate</li>
+			<li>Virtual Environment - venv- внутреннее окружение совместимости python и django
+				<br><div class="boldertext">Создаём изолированное виртуальное окружение, для проекта:</div>
+				<ul>
+					<li>Терминал cmd: pip3 install virtualenv - установили в Windows</li>
+					<li>Создаваять окружение лучше в папке где хранятся проекты - там где папки name-root</li>
+					<li>cd DjangoProjects - virtualenv virt1 - создали окружение, с именем virt1</li>
+					<li>virt1\Scripts\activate - активировать пространство! - обратные слэши!</li>
+					<li>теперь мы в (virt1) - и только после этого создаём новый проект - django-admin startproject myblog</li>
+					<li>Узнать версию django - в папке проекта - python -m django version</li>
+					<li>Вроде бы необходимо ещё установить django в это окружение, но у меня вроде всё работает и django сразу есть<br>
+					но на всякий случай если работать не будет, cd DjangoProjects - pip3 install</li>
+					<li>для деактивации окружения - cd virt1\Scripts\ - deactivate.bat</li>
+				</ul>
+			</li>
+
+			<li>gitingnore - файлы которые не хочешь спушить в git-репозиторий(базы данных, пароли и так далее)
+				<br><div class="boldertext">Это необходимо делать до того как первый раз запустили сервер!:</div>
+				<ul>
+					<li>в папке -root создаём файл через Sublime - '.gitignore' - в нем можно самостоятельно писать те файлы которые будут игнорироваться gitом</li>
+					<li>но есть сайт <a href="gitignore.io">gitignore.io</a> или <a href="https://www.toptal.com/developers/gitignore">www.toptal.com</a> </li>
+					<li>www.toptal.com - пишем Django - Сгенерировать - копируем текст и вставляем в наш .gitignore</li>
+					<li>по сути можно оставаить только:
+						<br> *.log
+						<br> *.pot
+						<br> *.pyc
+						<br> __pycache__/
+						<br> local_settings.py
+						<br> db.sqlite3
+						<br> db.sqlite3-journal
+						<br> /media
+						<br> /static
+					</li>
+					<li>далее в git cmd - переходим в папку name-root</li>
+					<li>git init - инициализируем git репозиторикй- папку на pc</li>
+					<li>git status - смотрим какие файлы не отслуживаются</li>
+					<li>git add . - добавляем все файлы</li>
+					<li>git status - смотрим что теперь всё отслеживается</li>
+					<li>git commit -m "Начало дата"</li>
+					<li>далее уже в командной строке обычной запускаем наше виртуальное окружение (activate) -  cd virt1\Scripts\activate </li>
+					<li>cd name-root - python manage.py runserver - запускаем локальный сервер</li>
+					<li>после запуска сервера появилась папка pycashe и базы данный db.sqlyte3</li>
+					<li>Далее в git-cmd проверяем статус папки - git status - и увидим что вроде бы ничего не изменилось, так как мы запретили гиту отслживать эти параметры! - они просто игнорируются!</li>
+				</ul>
+			</li>
+			<li>Django Apps - запустили сервер runserver - внутри окружения virt1</li>
+			<li>Открываем Sublime Text папку name-root</li>
+			<li>Тормозим сервер -CTRL+C</li>
+			<li>python manage.py startapp blog - создаём приложение блог</li>
+			<li>python manage.py startapp eventshome - создаём приложение eventshome - там будут события которые будут отображатся на домашней странице</li>
+			<li>создадим коммит - git add . - git status - git commit -m "add apps eventshome and blog" - создали новый коммит</li>
+			<li>Создаём новый репозиторий на git hub - myblog</li>
+			<li>Пушим в сеть - git remote add origin https://github.com/Mello134/myblog.git<br>git branch -M main<br>git push -u origin main	
+			</li>
+			<li>Models и базы данных - заходим в директорию приложения eventsgome в файл models.py.
+				<br>Каждый раз когда захотим создать новую модель всегда заходим в models.py.
+				<br>Можно иметь несколько моделей в приложении, но чаще всего 1 приложение = 1 модель. Тоесть в eventshome приложении будем eventshome модель
+				<br>Модель это класс, то есть мы должны создать python class
+			</li>
+			<li>В папке eventshome - в model.py - пишем <pre>-class Eventhome(models.Model):</pre> - В скобках, из пакета models, передаём класс Model. Наш Eventhome класс это подкласс Model-класса. - этим кодом создали создеём класс Eventshome.
+				<br>Eventhome-класс - наследует всю функциональность из Model класса - которая нужна нам для сохоранения информации этого класса Eventhome-класса в базу данных.
+				<br>
+			</li>
+			<li>В папке eventshome - в model.py - в классе Eventhome - создаём свойство для изображений
+				<br><pre>event_image = models.ImageField(upload_to='event_images/')</pre>
+				<br>ImageField(upload_to="путь") - поле ввода для загрузки изображений, путь это место где мы будет сохранять информацию
+				<br>смотри django model class - какие ещё поля может передавать клас model
+			</li>
+			<li>Добавляем поле для отображения текста <pre>event_text = models.CharField(max_length=300)</pre>
+				<br>CharField(max_length=300) - #поле для ввода строк, максимальное количество символов 300
+			</li>
+			<li>Создаём миграции - стоп сервер - cd name-root - <pre>python manage.py migrate</pre></li>
+			<li>переходим в settings.py, чтобы указать новые приложения которые мы создали eventshome.
+				<br>в INSTALLED_APPS = [... добавляем класс из apps.py  -EventshomeConfig.
+				<pre>INSTALLED_APPS = ['eventshome.apps.EventshomeConfig',</pre> [папка приложения.файл apps.py.класс config из файла, ....]
+			</li>
+			<li>settings.py - в самом низу<pre>MEDIA_ROOT = BASE_DIR / 'media'</pre>
+				<br>Это дирриктория name-root - в неё мы будем сохранять все изображения
+			</li>
+			<li>settings.py - в самом низу<pre>MEDIA_URL = '/media/'</pre>
+				<br>Что теперь происходит. Если создаётся новое событие или изображение ImageField. Мы переходим name-root/media - внутри будет создаваться event_images папка (писали в mpdels upload to='event_images') - и потом изображение будет помещено туда
+				<br>То есть если мы хотим получить доступ к этому изображению, мы должны укахать имя сайта http://127.0.0.1:8000/media/название изображения
+			</li></li>
+			<li>Создаём миграцию для нашей новой модели - сохраняем все файлы и далее в командной строке - <pre>python manage.py makemigrations</pre> - получаем ошибку что не установлен Pillow.<br>migration миграции - это путь в django для распространения информации об изменениях которые мы сделали в моделях (добавление поля или удаление модели и тд.)
+			</li>
+			<li><pre>python -m pip install Pillow</pre> - устанавливаем Pillow (всё в папке name-root(на всякий случай - может быть можно было везде)</li>
+			<li>повторяем - <pre>python manage.py makemigrations</pre>
+				<br>видим код внутри этого файла - eventshome\migrations\0001_initial.py
+			</li>
+			<li>После того как мы сделали миграции мы можем применить эти миграции - <pre>python manage.py migrate</pre>
+				<br>Теперь мы применили миграции admin, auth, contenttypes, eventshome, sessions
+			</li>
+			<li>Admin - запускаем сврвер в нашей virtenv -virt1</li>
+			<li>Создаём аккаунт админа сервера, суперюзера - стоп сервер
+				<pre>python manage.py createsuperuser</pre>
+				<pre>Username: Mello</pre>
+				<pre>Email address: elproject220@yandex.ru</pre>
+				<pre>Password:blog1234</pre>
+				<br><div class="boldertext">Пароль должен быть очень хорошим на настоящем сайте</div>
+			</li>
+			<li>Запускаем сервер - python manage.py runserver. Переходим на /admin - вводим данные</li>
+			<li>settings.py - LANGUAGE_CODE = 'ru-RU' - теперь админка на родном языке!</li>
+			<li>Папка eventshome- admin.py
+				<ul>
+					<li><pre>from .models import Eventhome</pre> #Импортировалм наш Eventhome class.Нашу модель Eventhome</li>
+					<li><pre>admin.site.register(Eventhome)</pre>Добавили в админку нашу модель Eventhome</li>
+					<li>В админке  появилось верхнее EVENTSHOME - наше приложение, нижнее EVENTSHOMES(почемуто с s) - имя модели. То есть в приложении EVENTSHOME модель EVENTSHOMES</li>
+					<li>На сайте EVENTSHOME - добавить EVENTSHOME</li>
+					<li>urls.py - после листа urlpatterns пишем код
+						<pre>path...] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)</pre>
+						Там же импортируем settings
+						<pre>from django.conf import settings</pre>
+						Там же
+						<pre>from django.conf.urls.static import static</pre>
+						Эти строчки кода используются для управления любыми медиафайлами включая видео
+					</li>
+					<li>значение в media_root(папки media) желательно не должно быть такимже как и в media_url, для этого меняем в settings.py
+						<pre>MEDIA_URL = '/awesome_media/'</pre></li>
+					<li></li>
+				</ul>
+			</li>
+
+			<li>Установка PostgreSQL.Windows
+				<ul>
+					<li><a href="https://www.postgresql.org/">https://www.postgresql.org/</a></li>
+					<li>download - Windows - download installer - Windows x86-64 15.0</li>
+					<li>После загрузки устанавливаем - пароль сделал: 0000, порт по умолчанию 5432</li>
+					<li>Устнанавливаем Stack Builder на свой локальный сервер port 5432. Драйверы и приложения не устанавливаем нажали Отмену</li>
+					<li>В пуск PostgreSql для установки дополнений - Aplication Stack Builder - пока не устанавливали ничего дополнительного</li>
+					<li>Открываем SQL Shell
+						<pre>Server [localhost]:Enter</pre>
+						<pre>Database [postgres]:Enter</pre>
+						<pre>Port [5432]:Enter</pre>
+						<pre>Username [postgres]:Enter</pre>
+						<pre>Пароль пользователя postgres:0000 Enter</pre>
+				</ul>
+			</li>
+			<li>Подключаем PostgraceSQL к проекту
+				<ul>
+					<li>в cmd postgrace - <pre>postgres=# \du</pre> - видим всех пользователей (у меня почему то неизвестные символы)</li>
+					<li><pre>\password postgres</pre> - сменить пароль. Для реальный проектов пароль должен быть очень сильным. Изменил на blog1234</li>
+					<li>создаём базуданных для нашего проекта
+						<pre>postgres=# CREATE DATABASE myblogdb;</pre>
+					Теперь у нашего проекта есть базаданных, можем закрыть терминал SQL Shell (psql)</li>
+					<li>Далее в settings.py - DATABASES
+						<pre>'ENGINE': 'django.db.backends.sqlite3', меняем на 'ENGINE': 'django.db.backends.postgresql',</pre>
+						<pre>'NAME': BASE_DIR / 'db.sqlite3', Меняем на 'NAME': 'myblogdb'</pre>
+						Ниже в DATABASE добавляем:
+						<pre>'NAME': 'myblogdb',</pre>
+						<pre>'USER': 'postgres',</pre>
+						<pre>'PASSWORD': 'blog1234',</pre>
+						<pre>'HOST': '127.0.0.1',#либо просто'localhost'</pre>
+						<pre>'PORT': '5432',</pre>
+
+					</li>
+					<li>Выходим из сервера и запускаем ещё раз- получаем ошибку, останавливаем сервер</li>
+					<li>выходим из командной строки, перезапускаем полностью cd C:\Users\Александр\IdeaProjects\Udemy_YouRa\DjangoProjects>, далее активируем виртуальную среду virt1\Scripts\activate</li>
+					<li>В дирректории (virt1) C:\Users\Александр\IdeaProjects\Udemy_YouRa\DjangoProjects> - pip install psycopg2</li>
+					<li>python manage.py runserve - ВСЁ РАБОТАЕТ, ОТЛИЧНО!</li>
+				</ul>
+			</li>
+			<li>Далее опять добавляем миграции так как ошибка идёт по ним. Останавливаем сервер. В (virt1) C:\Users\Александр\IdeaProjects\Udemy_YouRa\DjangoProjects\myblog-root> - пишем python manage.py migrate</li>
+			<li>Запускаем сервер, заходим в админку - и не заходит потомучто наша админка была в старой базе данных sqliste - теперь нужно создать в новой postgreqsl</li>
+			<li>Останавливаем сервер, в терминале - и заново создаём суперузера
+				<pre>python manage.py createsuperuser</pre>
+				<pre>Username: Mello</pre>
+				<pre>Email address: elproject220@yandex.ru</pre>
+				<pre>Password:blog1234</pre>
+				<br><div class="boldertext">Пароль должен быть очень хорошим на настоящем сайте</div>
+			</li>
+			<li>Создали новый коммит "изменили базу данныйх на postgresql"</li>
+			<li>Создаём модель для блог страницы
+				<ul>
+					<li>virt1\Scripts\activate - cmd сразу входим в virtualenv</li>
+					<li>cd myblog-root</li>
+					<li>Папка приложения blog - models.py - присваиваем class Post в нём все функции -пишем код
+						<pre>class Post(models.Model):
+							<br>   title =  models.CharField(max_length=300)#поле для ввода строк, максимальное количество символов 300
+							<br>   date = models.DateTimeField()#поле дата время
+							<br>   text = models.TextField()#для большого тестового поля
+							<br>   image = models.ImageField(upload_to='event_images/')#поле ввода для загрузки изображений, upload_to="путь" - место где будет хранится
+						</pre>
+					</li>
+					<li>Добавляем BlogConfig class - из apps.py в settings INSTELLED_APPS = []
+						<pre>'blog.apps.BlogConfig',</pre>
+					</li>
+					<li>Создаём миграцию. в cmd (virt1) C:\Users\Александр\IdeaProjects\Udemy_YouRa\DjangoProjects\myblog-root>
+						<pre>python manage.py makemigrations</pre>
+					</li>
+					<li>Применяем миграцию
+						<pre>python manage.py migrate</pre>
+					</li>
+				</ul>
+			</li>
+
+			<li>Добавляем в admin созданную модель для блога
+				<ul>
+					<li>В папке blog - admin.py - пишем код
+						<pre>from .models import Post #Импортировалм наш Post class. Нашу модель Post
+							<br>admin.site.register(Post)	
+						</pre>
+					</li>
+					<li>Переходим в терминал cmd - runserver</li>
+					<li>http://127.0.0.1:8000/admin/ = http://localhost:8000/admin/</li>
+				</ul>
+			</li>
+			<li>Добавляем наш первый пост в админке
+				<ul>
+					<li>Post - добавить post+</li>
+					<li>Title: Мой первый пост Data, Время: Сегодня, Сейчас ... добавляем картику.</li>
+					<li>Сохранить</li>
+				</ul>
+			</li>
+			<li>Стоп сервер, всё сохраняем, Делаем новый коммит "Добавили post модель" и пушим в гитхаю
+				<pre>git add .
+					<br>git status
+					<br>git commit -m "Добавили Post модель"
+					<br>git branch -M main
+					<br>git push -u origin main
+				</pre></li>
+			<li>Создаём домашнюю страницу
+				<ul>
+					<li>Домашнюю страницу расположим внутри eventshome приложения папке
+						<br>eneventshome папка - views.py пишем код, создаём функцию
+						<pre>def home(request):
+							<br>	return render(request, 'home.html')
+						</pre>
+					</li>
+					<li>в urls.py в списке urlpatterns Добавляем путь. и импортируем вайл views.py из eventshome папке
+						<pre>import eventshome.views
+							<br>urlpatterns = [..., path('', eventshome.views.home, name='home'),]
+							<br>#путь пустой, eventshome-папака.файл views.функуия home, имя = которое будем использовать для urla
+						</pre>
+					</li>
+				</ul>
+					<li>Теперь создаём сам home.html
+						<ul>
+							<li>Созданим папку templates в каждом приложении(eventshome, blog)</li>
+							<li>Внтури каждой папки templates создадим ещё одну папку с названием приложения(eventshome, blog) потому что например внутри приложениея могут быть ещё приложенния и например будут несколько home.html</li>
+							<li>Внутри eventshome/templates/evensthomt - создаём файл home.html</li>
+							<li>В папке eventshome/ в файле views.py меняем путь страницы home html - получилось:
+								<pre>return render(request, 'eventshome/home.html')</pre>
+							</li>
+							<li>в home.html добавим какойто код например Заголовок в h1</li>
+							<li>Запускаем сервер проверяем на http://localhost:8000/ - открывается наша страница</li>
+						</ul>
+					</li>
+
+
+					<li class="boldertext">Далее изучение Bootstrap - Это фреймворк для построения страниц HTML + CSS и JavaScript</li>
+						<ul>
+							<li><a href="https://getbootstrap.com/">Оригинальный сайт bootstrap</a>
+								<br><a href="https://bootstrap5.ru/">Русская версия bootstrap5</a>
+								<br>responsiv - адаптивный сайт - то есть он будет менятся в зависимости от ширины окна
+							</li>
+							<li>Создал папку C:\Users\Александр\IdeaProjects\Udemy_YouRa\DjangoProjects\bootstrap в нём файл hellobootstrap.html</li>
+							<li>hellobootstrap.html копируем стартовый шаблон с bootstrap5.ru</li>
+							<li>Делаем респонсив (адаптивную) разметку-grid систему(стеки). В css тоже есть grid системы, загугли
+							<p>СSS Media Queries - гугли, пробуй</p>
+							<p>Контейнеры (в bootstrap) - это самый основной элемент макета в Bootstrap, который требуется при использовании нашей сеточной системы по умолчанию .</p>
+							<p>Бутстрап сетка | grid - смотри в bootctrep5.ru -div class="container"-  вставили в шаблон "один из трёх шаблонов"</p></li>
+						</ul>
+					</li>
+					<li><p class="boldertext">Bootstrap ч.2</p>
+						<ul>
+							<li>На w3scool тоже есть инфорсация по Bootstrap</li>
+							<li>В грид системе можно использовать до 12 колонок, если их нужно меньше то необходимо обьеденить. например 3 раза по 4</li>
+							<li>-div class="container"- фиксированная ширина контейнеров</li>
+							<li>-div class="container-fluid"- предоставляет всю ширину экрана</li>
+							<li>-внутри класса container. - class="col" - это столбцы которые будут делится на равные части автоматически!- максимум 12 колонок</li>
+							<li>-внутри класса container. - class="col-sm-3" - при сужении, колонки будут автоматически распологатся одна под одной (во весь экран столбцы/экран съузили - строки) sm - это small </li>
+							<li>-внутри класса container. - class="col-md-3" - тоже самое что sm, только разметка будет менятся раньше при сужении. md - это medium</li>
+							<li>-внутри класса container. - class="col-lg/xl-3" - тоже самое прогрессия, lg после md/максимально это xl, при xl по сути сразу будут располагаться друг под другом</li>
+							<li>class="col..." - можно комбинировать - попробую на пракитике, всё будёт понятно, ничего сложного</li>
+							<li>-внутри класса container. - class="col-sm-4" - будет использоваться 4 из 12 колонок, при col-sm-8 - 8 из 12 колонок</li>
+							<li>Typography - оформление контента в bottstrap. Подробнее на w3scool</li>
+							<li>-внутри класса container. - class="distlay-1..4" - разные размеры текста, проверь на заголовках h1</li>
+							<li>-small-текст-/small- просто атрибут отдельный, как и всё остальное можено указывать внутри(между -h1-  -/h1-) других элементак h1 h5 p a и тд</li>
+							<li>-mark- желтоватый фон тектса, -abbr- подчёркивание из точек, а внутри элемента abbr - можно указать расшифровка абревеатуры, и при навереднии мышки на абрревиатуру, будет показываться её расшифровка</li>
+							<li>Вообщем есть очень много html элементов смотри на w3scholl</li>
+							<li>Bootstrap 5 colors - смотри на w3school -p class="text-muted" - приглушенный текст, есть текст основной, успех, предупреждение, опасный, второстепенныйc- это всё бустрепные фишки, без него не будет работать, можно делать и без него но придётся создавать отдельные классы искать цвета и так далее, то есть в бустрепе уже есть стили из коробки и это ускоряет процесс. То есть мы в body присваевыем класс, а в сss ничего делать не нужно, если в head уже загрузили bootstrap</li>
+						</ul>
+					</li>
+
+					<li><p class="boldertext">Bootstrap ч.3</p>
+						<ul>
+							<li>Bootstrap Navigation Bar - панель навигации</li>
+							<li><a href="https://bootstrap5.ru/docs/components/navbar">Ссылка на шаблон панели навигации bootstrap5.ru</a></li>
+							<li><a href="https://getbootstrap.com/docs/5.2/components/navbar/">https://getbootstrap.com/</a></li>
+							<li>теп nav - появился в html5 - почти равнозначенм тегу div - </li>
+							<li>в теге нав перечислены классы navbar  - определяет сам компонент навбр, этоnavbar-expand-lg - позваляет создавать адаптивную кнопку, развернуть свернуть, navbar-light - схема панели навигации(панель навигации светлая, текст тёмный, dark наоборот), bg-light - это background</li>
+							<li>в теге nav можно добавить самостоятельно атрибут style и изменить параметры вручную</li>
+							<li>class navbar-brand - это лого сайта, в данном случае Navbar, в данном случане она же и будет ссылкой</li>
+							<li>button - здеь это кнопка расширения</li>
+							<li>ниже div - div class="collapse navbar-collapse" - это все элементы в навбаре - Home, link, dropdown, disablet, Search - остальные элементы данного шаблона попробуй сам и зазугли </li>
+							<li>class="nav-item dropdown" - выпадающее меню</li>
+							<li>sticky navbar  - чтобы навигационная панель всегда была видна сверху, даже когда находишься внизу страницы.  В элементе 'nav class="sticky-top"</li>
+							<li>чтобы остутипь от нав панели просто добавляем margin-top в div элемент который сразу идёт за навпанелью</li>
+
+						</ul>
+					</li>
+
+
+					<li><p class="boldertext">Задание 2 - делаем home.html</p>
+						<ul>
+							<li><a href="https://getbootstrap.com/docs/5.2/examples/album/">Ссылка на сайт</a> с него копируем код</li>
+							<li>Просмотр кода страницы - и копируем весь код</li>
+							<li>-link rel="canonical" href="https://getbootstrap.com/docs/5.2 - меняем на код с Bootstrap CSS
+								<p><a href="https://bootstrap5.ru/docs/getting-started/introduction">СSS</a></p></li>
+							<li>снизу в -footer- удаляем все скпипыты и вставляем из bootstrap JS - по ссылке которая выше, просто чуть ниже</li>
+							<li>полностью меняем Navbar - на похожую на нашу (удаляем весь код из header)
+								<p><a href="https://bootstrap5.ru/docs/components/navbar">bootstrap5 navbar</a></p></li>
+							<li>-div class="navbar-nav"- меняем на</li>
+							<li>кнопка написать мне, вставляем ссылку -a href="mailto:elprojectasr@yandex.ru"-</li>
+						</ul>
+					</li>
+
+					<lI><p class="boldertext">Отображение объектов Events</p>
+						<ul>
+							<li>Удаляем всё лишнее из eventshome/templates/home.html</li>
+							<li>переходим в eventshome/views.py, импортируем модель - class Eventhome
+								<pre>from .models import Eventhome</pre>
+							</li>
+							<li>чтобы получить все объекты eventshome из базы данных, в views.py в функции home, пишем код/ и добавляем  словарь как аргументы
+								<pre>events = Eventhome.objects<br>return render(request, 'eventshome/home.html', {'events': events})</pre>
+							</li>
+							<li>Далле эти объектры отображаем в eventshome/templates/home.html.<br>
+								до diva lass="col-md-4" и после. Из класса Eventhome берём все эвенты циклом for и вконце дива закрываем цикл for
+								<pre>{% for Eventhome in events.all %}<br>{% endfor %}</pre>
+							</li>
+							<li>До этого в админке в Eventhome добавляем пару эвентов (картинку и текст)</li>
+							<li>чтобы отображались картинки в home.html пишем
+								<pre>-img class="cart-img-top" src="{{Eventhome.event_image.url}}" /-</pre>
+							</li>
+							<li>чтобы отображался текст в home.html пишем
+								<pre>{{ Eventhome.event_text }}</pre>
+							</li>
+							<li><p class="boldertext">Eventhome.event_image и Eventhome.event_text - прописаны в models.py -  это просто переменные, ранее мы их назначали (добавляли в админ панель) - это как раз то что мы загружаем в админке, и файлы автоматически сохраняются в базе данных</p>
+							</li>
+						</ul>						
+					</lI>
+
+					<lI><p class="boldertext">Страница блога - добавляем в django</p>
+						<ul>
+							<li>Добавляем путь в urls.py к странице блога, т.к блог внутри отдельного приложения blog. - в папке необходимо создать свой urls.py</li>
+							<li>В основном  myblog-root/myblog/urls.py импортируем функцию unclude()
+								<pre>from django.urls import path, include</pre>
+							</li>
+							<li>В основном  myblog-root/myblog/urls.py добавляем путь. [где - posts - это то что видем в браузере, include - почти как import, blog.urls - это файл myblog/blog/urls.py]
+								<pre>path('posts/', include('blog.urls')),</pre></li>
+							
+							<li>В myblog/blog/urls.py
+								<pre>from django.urls import path #из джанго импортируем встроенную функцию path<br>from . import views #импортируем файл views из этой же папки myblog/blog/<br>urlpatterns = [path('', views.showblog, name='showblog'),]<br> #cоздали список urlpatterns с путями, добавили путь к функции showblog из файла views.py(функцию создадим далее)
+								</pre>
+							</li>
+							<li>Создаём папку myblog/blog/templates/</li>
+							<li>Создаём папку myblog/blog/templates/blog</li>
+							<li>Создаём файл myblog/blog/templates/blog/blog.html</li>
+							<li>В myblog/blog/views.py создаём функцию showblog
+								<pre>def showblog(request): #создали функцию request - это запрос<br>return render(request, 'blog/blog.html') #функция будет возвращать страницу blog.html - в папке myblog/blog/templates/blog/blog.html</pre>
+							</li>
+							<li>Проверяем, Activate virt1 - runserver  -  заходим http://127.0.0.1:8000/posts/  -  должна открыться страница блога</li>
+						</ul>
+					</lI>
+					<li><p class="boldertext">Страница блога - делаем разметку html</p>
+						<ul>
+							<li>В blog.html полностью копируем home.html - и в бади оставляем только навбар </li>
+							<li>Верстаем страницу
+								<p><a href="https://bootstrap-5.ru/articles/cheatsheet5/">ШПАРГАЛКА BOOTSTRAP 5</a></p>
+							</li>
+							<li>В myblog/blog/views.py - импортируем клас Post из myblog/blog/models.py<pre>from . models import Post</pre></li>
+							<li>В myblog/blog/views.py - в функции showblog - добавляем перемунную posts, в ней все объекты класса Post которые указывали в models.py [title, date, text, image], в передаём значения return  спомощью словаря/
+								<pre>posts = Post.objects<br>return render(request, 'blog/blog.html', {'posts': posts})</pre>
+							</li>
+							<li>В админке добавляем парочку почтов</li>
+							<li>В blog.html добавляем цикл - при помощи которого будем получать все объекты
+								<pre>{% for post in posts.all %}<br>{% endfor %}</pre>
+							</li>
+							<li>Для отображения в html - переменные класса Post из myblog/blog/models.py - пишем название переменных - внутри цикла что указан выше.
+								<pre>{{ post.title }} {{ post.date }} {{ post.text }}</pre>
+							</li>
+							<li>Для отображения картинок так же в blog.html
+								<pre>-img src="{{ post.image.url }}"-</pre>
+							</li>
+							<li>Для того чтобы не были огромными, указываем в теге img высоту, для того что бы картинки менялись в зависимости от ширины страницы - добавляем класс img-fluid - это Bootstrap фишка
+								<pre>-img src="{{ post.image.url }}" height="300" class="img-fluid"-</pre>
+							</li>
+							<li>Для того чтобы в навбаре выделялась страница блог (то есть мы на ней находимся, в диве navbar - в сслыке блог добавляем class = active
+								<pre>-a class="nav-link active" href="#"-Блог-/a-</pre></li>
+						</ul>
+					</li>
+					<li><p class="boldertext">Страница отдельного поста</p>
+						<ul>
+							<li>В blog.html - делаем заголовки постов сылками, помещаем в теги -a-</li>
+							<li>Чтобы на при открытии blog.html при открытии в браузере, весь пост не высвечивался (так как может быть очень большой) - необходимо ограничить количество символов, для  этого
+								<p>В myblog/blog/models.py прямо в классе Post, создадим(def) функцию get_summary - чтобы получить короткую сводку(в нешем случае ограничение 70 символов)</p>
+								<pre>def get_summary(self):<br>    return self.text[:70</pre>
+							</li>
+							<li>В blog.html в место просто post.text - выводим {{ post.get_summary }}</li>
+							<li>Далее создаём url для этих ссылок, то есть в браузере будет сайт.ру/posts/1 - где 1 это id - номер поста. Для этого в myblog/blog/urls.py Добавляем пути
+								<pre>path('------int:post_id>/')</pre>
+								То есть - здесь джанго будет сохранять челое число int - в post_id переменной 
+							</li>
+							<li>Там же указываем specific_post (конкретный пост) функцию с тем же именем specific_post  - саму функцию создадим потом
+								<pre>path('-int:post_id>/', views.specific_post, name='specific_post'),</pre>
+							</li>
+							
+							<li>В myblog/blog/views.py - импортируем стандартную функцию джанго -get_object_or_404 - То есть если id будет - покажет страницу, если такого Id не будет - покажет страницу 404(страница не найдена)
+								<pre>from django.shortcuts import render, get_object_or_404</pre></li>
+							<li>В myblog/blog/views.py  - создаём функцию specific_post
+								<pre>def specific_post(request, post_id):#функция отдельного поста<br>    post = get_object_or_404(Post, pk=post_id)#Post - класс, pk - основной ключ в базе данных<br>    return render(request, 'blog/specific_post.html', {'post':post})</pre>
+							</li>
+							<li>Создаём страницу myblog-root/myblog/blog/templates/blog/specific_post.html, в ней пишем например {{ post.title }} - теперь при в воде в браузере http://127.0.0.1:8000/posts/1-2-3  - будут показывать заголовки разных постов по номерам</li>
+						</ul>
+					</li>
+					<li><p class="boldertext">Статические файлы</p>
+						<p>Статические файлы - это файлы которые будут доступны везде в нашем проекте, например что то в медиа папке, в нашем случае это будет "обо мне"</p>
+						<ul>
+							<li>Создаём папку static - myblog-root\myblog\static</li>
+							<li>В папку статик перемещаем 2 файла, фото и текстовый документ</li>
+							<li>Переходим в settings.py снизу добавляем, папку статических файлов<pre>STATICFILES_DIRS = [BASE_DIR / 'myblog/static/']<br>STATIC_ROOT = BASE_DIR / 'static'</pre></li>
+							<li>Переходим в терминал cmd<pre>DjangoProjects\myblog-root>python manage.py collectstatic</pre>
+								создалась новая папка статик и собрались все статические файлы проекта! 132 штуки
+							</li>
+							<li>В home.html - сразу после тега html до тега head - пишем код, загружаем все статические файлы
+								<pre>{% load static %}</pre>
+							</li>
+							<li>Переходем в ссылку ОБО мне. указываем имя файла с расширением
+								<pre>-a href="{% static 'AboutMe.txt' %}"></pre>
+							</li>
+							<li>Далее добавляем статическое изображение, в home.html после кнопки "написать мне" - пишем<pre>-img src="{% static 'гонщик.jpg' %}"></pre></li>
+							<li>Добаим картинку чтобы была не огромной добавили<pre>-img src="{% static 'гонщик.jpg' %}" height="300" width="300" class="img-fluid"></pre></li>
+						</ul>
+					</li>
+					<li>
+						<ul><p class="boldertext">Последние штрихи</p>
+							<li>Для открытия ссылки в новом окне, в теге ссылок -а- до hreef добавляем: target="_blank" rel="noopener noreferrer"<br>Эту операцию делаем для яндекса и в home.thml и d blog.html</li>
+							<li>Переходим в myblog-root/blog(apps)/urls.py - копиреум name=showblog. В home.html вставляем в ссылку блога [для того чтобы открывалась страница блога]:
+								<pre>-a class="nav-link" href="{% url 'showblog' %}">Блог-/a-</pre></li>
+							<li>Для того чтобы со страницы блога можно было заходить на главную страницу. ИЗ основного urls.py - то есть не из приложения а из папки mybloge - копируем name='home'. В blog.html вставляем :
+							<pre>{% url 'home' %}</pre></li>
+							<li>Для перехода к каждой отдельной страницы блога. В myblog-root/blog/urls корируем name='specific_post', добавляемм ссылку url specific_post + post.id в  blog.html в цикле for, в ссылке на отдельные страницы блога
+								<pre>-a href="{% url 'specific_post' post.id %}">-h2>{{ post.title }}-/h2></pre>
+							</li>
+							<li>Делаем страницу specific_post.html - копируем из home.html код -  делаем штрихи на всех страницах, заголовки и так далее, можно увеличить картинки , ничего сложного</li>
+							<li>Чтобы в админке посты сохранялись под своими именами а не 	Post object (1) (2) (3). Переходим в myblog-root/blog(app)/models.py .  В классе Post создаём ещё одну функцию:
+								<pre>def __str__(self):#в админке будет выводить имя поста место postobjects(1)<br>return self.title</pre></li>
+						</ul>
+					</li>
+					<li>
+						<p class="boldertext">Несовместимость версий, установка более старых и создание более старых virtenv - смотри в конце проекта, есть текстовое пописание на Udemy в курсе</p>
+					</li>
+					<li>Создаём commit и пушим на гит хаб</li>
+					<li>Проект готов!</li>
+
+		</ol><br><br><br><br><br>
+
+		<h3>Ecommerce project</h3>
+		<ol>
+
+			<li class="boldertext">Начало, statrproject, меняем DB, .gitignore..</li>
+				<ol type="a">
+					<li>Создали проект в папке проектов [django-admin startproject ecommerce]</li>
+					<li>Внешнюю папку переименовали ecommerce-projet</li>
+					<li>В ecommerce-projet создали .gitignore - код в него скопировали из старого проекта, и сохранили</li>
+					<li>В settings.py - DATABASES 'default' - можно полностью скопировать код из my blog(settyngs.py) - это инфа по пользователю db postresql. НО НЕОБХОДИМО ИМЯ ПОМЯНЯТЬ DB
+						<pre>'NAME': 'ecommercedb'</pre></li>
+					<li>Создаём в postgresql db - ecommercedb. В SQL Shell(psql) - cmd postresql
+						<pre>CREATE DATABASE ecommercedb; #;обязательна.  проверь создалась ли база, бывают проблемы</pre></li>
+						<li>Заходим в virtenv [virten/Scripts/activate</li>
+						<li>Применяем миграции в cmd - [cd ecommerce-project]
+							<pre>python manage.py migrate</pre></li>
+						<li>Запускаем сервер [python manage.py runserver]</li>
+				</ol>
+			<li class="boldertext">Добавляем приложения в проект</li>
+				<ol type="a">
+					<li>Добавляем приложение shop - В eccomerje-project cmd
+						<pre>django-admin startapp shop</pre></li>
+					<li>В shop/views.py - импортируем HttpResponse
+						<pre>from django.http import HttpResponse #импоприровали htth response</pre></li>
+						<li>В shop/views.py - создаём функцию home
+							<pre>def home(request):<br>    return HttpResponse('--h1>Home--/h1>')</pre></li>
+						<li>В shop - создаём urls.py и пишем код
+							<pre>from django.urls import path#скопировали из основного urls.py<br>from . import views#импортировали shop/views.py<br>urlpatterns = [path('', views.home, name='home'),]<br>#пустой url к функции home в shop/views.py, присвоили имя home</pre></li>
+						<li>В ecommerce/urls.py - добавляем include
+							<pre>from django.urls import path, include</pre></li>
+						<li>В ecommerce/urls.py в urlpatterns, добавляем путь к shop/urls.py. Теперь при пустом запросе в браузере, бедет ссылаться сначала на shop/urls.py и уже в нём смотреть что делать
+							<pre>path('', include('shop.urls')),<br>#На пустой запрос Localhost, будет ссылаться в shop/urls.py</pre></li>
+						<li>В settings.py в список INSTALLED_APPS, добавляем наше приложение shop
+							<pre>INSTALLED_APPS = [..,'shop',]</pre></li>
+						<li>Сохраняем, перезапускаем сервер, по запросу http://127.0.0.1:8000/ в браузере должно открываться то что мы указали в shop/views.py/def home (заголовок Home)<br>
+							<p class="boldertext">ТО ЕСТЬ, что теперь происходит:</p>
+							<ul>
+								<li>На запрос - http://127.0.0.1:8000/ - брайзер смотрит в encommerce/urls.py на строчку кода  - path('', include('shop.urls'))</li>
+								<li>path('', include('shop.urls')) - отправляет в shop.urls.py</li>
+								<li>В shop.urls.py строчка - path('', views.home, name='home') - отправляет нас в shop/views.py к функции home</li>
+								<li>shop/views.py/def home - return HttpResponse('--h1>Home--/h1>')<br>
+								То есть просто заголовок, всё логично и просто!</li>
+							</ul>
+						</li>
+				</ol>
+			<li class="boldertext">Создаём templates</li>
+				<ol type="a">
+					<li>В shop/viwes.py создаём ещё одну функцию - about - пока скопировали всё с def home</li>
+					<li>В shop/urls.py добавляем путь к функции about
+						<pre>[..path('about/', views.about, name='about'),]</pre></li>
+					<li>Сохраняем, перезапускаем сервер, по запросу http://127.0.0.1:8000/about в браузере должно открываться то что мы указали в shop/views.py/def about (заголовок About)<br>
+							<p class="boldertext">ТО ЕСТЬ, что теперь происходит:</p>
+							<ul>
+								<li>На запрос - http://127.0.0.1:8000/about - брайзер смотрит в encommerce/urls.py на все пути path - путей about нуте</li>
+								<li>так же есть строчка  - path('', include('shop.urls')) - она ссылкает на shop.urls.py, где хранятся ещё пути</li>
+								<li>В shop.urls.py строчка - path('about/', views.about, name='about') - отправляет нас в shop/views.py к функции about. Это как раз и есть наш запрос</li>
+								<li>shop/views.py/def about - return HttpResponse('--h1>About--/h1>')<br>
+								То есть просто заголовок должен открываться опять заголовок, что мы временно писали вместо настоящей страницы, для понимания что в джанге сделали всё верно</li>
+							</ul>
+						</li>
+					<li>В ecommers-project/shop создаём папку templates</li>
+					<li>В ecommers-project/shop/templetes создаём home.html + about.html</li>
+					<li>В них создаём какойто html код, в title и в body (для понимания, что открываем именно ту страницу)</li>
+					<li>В shop/views.py  - удаляем httpResponse - теперь будем пользоваться функцией render!</li>
+					<li>Меняем функцию home:
+						<pre>	return render(request, 'home.html')#путь к ecommerce/shop/templates/home.html</pre></li>
+					<li>То же самое делаем в def about</li>
+					<li>Сохраняем - проверяем</li>
+				</ol>			
+			<li><p class="boldertext">Расширение(наследование) templates</p>
+				<p>Это необходимо когда есть одинаковые части кода на разных страницах, напимер header, footer, navbar и тд</p></li>
+				<ol type="a">
+					<li>В enommerce-project/shop/templates - создаём новый файл - base.html</li>
+					<li>В base.html для примера пишем код --header>код--/hrader>
+						<pre>--a href="{% url 'home' %}">Домашняя страница--/a><br>#ссылка на home.html<br>--a href="{% url 'about' %}">Домашняя страница--/a><br>#ссылка на about.html
+					</li>
+					<li>Снизу base.html пишем код
+						<pre>{% block content %}<br>{% endblock %}</pre></li>
+					<li>Теперь чтобы унаследовать контект из base.html - В home.html/about.html - просто добавляем строчку кода
+						<pre>{% extends 'base.html' %}#расширение из base.html<br>{% block content %}<br>Далее какой-то индивидуальный код страницы, body например<br>{% endblock %}#конец блока</pre>
+						<p>Теперь данные ссылки есть и на home page и на about page. И они берутся из base.html - нам не нужно было прописывать их в каждой странице, это очень удобно когда страниц много, футеры навбары для всех одинаковые, в случае корректировок нем не потреюуется изменять на всех страницах, достаточно изменить только в base.html</p></li>
+				</ol>
+			<li><p class="boldertext">Добавляем Bootstrap стили ч.1</p></li>
+				<ol type="a">
+					<li><a href="https://getbootstrap.com/docs/5.2/getting-started/introduction/">getbootstrap.com-get sterted</a><br>Копируем стартовый шаблон, тот который с CSS и JS - в base.html</li>
+					<li>В body вставляем, весь контент что был ранее в base.html</li>
+					<li>В dase.html - в title - вставляем<pre>{% block title %} {% endblock %}</pre></li>
+					<li>В home.html - до [% block content %] - вставляем ne ту же строчку кода
+						<pre>{% block title %} {% endblock %}</pre></li>
+					<li>Между %block title% и %endblock% - Вставляем "Домашняя станица" и "About станица", в home.html и about.html - соответственно</li>
+					<li>Добавляем навбар в base.html - в body  - над строчками [% block content %]
+						<pre>--nav-<br>    --ul><br>        --li>--a href="">--/li><br>    --ul><br>--nav-</pre></li>
+					<li>В ссылках nav - добавляем: Категории, Контакты, About</li>
+					<li>В теге nav Добавляем class="navbar"
+						<pre>--navclass="navbar">#присваиваем класс bootstrap<br>--nav class="navbar-expand-md"><br>#expand-для гибкого сворачивания<br>#md - размер (есть:-sm,-md,-lg,-xl,-xxl)</pre></li>
+					<li>В теге ul присваиваем класс navbar-nav
+						<pre>--ul class="navbar-nav"> #для полноразмерной и облегченной навигации (включая поддержку раскрывающихся списков)
+						#теперь ссылки идёт в строку, а не в столбец. Если с узить будут в столбец</pre></li>
+					<li class="boldertext"> Полезная фишка для html - зажимаем CTRL и выделяем все теги куда одновременно хотим что то писать</li>
+					<li>Во всех ссылках li - добавляем класс nav-item
+						<pre>--li class="nav-item"></pre></li>
+					<li>Во всех ссылках a - добавляем класс nav-link #чтобы надписи выглядели ни как отдельная ссылка а как человеческие кнопки
+						<pre>--a class="nav-link" href=""></pre></li>
+					<li>В теге nav - можем менять например цыетовую гамму, добавляем класс - navbar-light - получим серый текст.
+						<br>navbar-light текс для использования со светлыми цветами фона
+						<br>navbar-dark текст для темных цветов фона
+						<br>bg-dark - тёмный фон
+						<br>bg-primary - синий фон
+						<br>--nav class="navbar navbar-light" style="background-color: #e3f2fd;"> - лёгкий текст, цвет любой по выбору
+					</li>
+					<li>Добавляем Логотип в navbar, для этого вверху прям под под тегом nav - добавляем ссылку --a> с кассом .navbar-brand. Далее между тегов ссылкок А, добавляем теги --i class="">- -/i> - чтобы добавить иконку.
+						<p>Иконки можно брать в Bootstrape или в Google, Например:<br>
+							<a href="https://fonts.google.com/icons">https://fonts.google.com/icons</a></p></li>
+					<li>Изщем иконку, вставляем ссылку link до title в head, вставляем style для иконки если есть, в тегах i или span - класс иконки - название иконки. Получилось так:
+						<pre>--a href="#" class="navbar-brand">--i class="material-symbols-sharp">token--/i>--/a></pre></li>
+					<li>В теге i можем менять цвет в style, либо классами bootstrap, для примера применил класс bootstrap .text-danger - красный цвет</li>
+					<li>Немного корректируем стиль навбар панели:
+						<pre>--nav .bg-dark> #тёмный фон,<br>--nav .navbar-dark> #буквы для тёмного фона<br>--a .text-light> #текст белый<br>--a .text-uppercase> #буквы в большом регистре<br>--a .fw-weight-bold> #более жирный текст, но не работает почемуто</pre></li>
+				</ol>
+			<li><p class="boldertext">Добавляем Bootstrap стили ч.2</p></li>
+				<ol type="a">
+					<li>Добавим отступы padding для ссылок в navbare
+						<pre>--a .px-3> #отступы 1/2/3/4/5/6 и ид.</pre></li>
+					<li>Добавим drop-down меню, в между тегов li в КАТЕГОРИИ
+						<pre>--div><br>    --a href="">Категория1/2/3/4/5--/a><br>--/div></pre></li>
+					<li>В li - "Категории"" - добавляем класс .dropdown
+						<pre>--li class="nav-item dropdown"></pre></li>
+					<li>В а - "Категории" добавляем классы .dropdown-toggle
+						<pre>--a class="... dropdown-toggle>#Это небольшая стрелочка для открывания</pre></li>
+					<li>В а - "Категории" добавляем строчки (отдельно от class и hreef)
+						<pre>id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"</pre>
+					</li>
+					<li>В div - отдельных категорий добавляем класс -dropdown-menu
+						<pre>--div class="dropdown-menu"></pre></li>
+					<li>В каждой отдельной сылке a, Категория 12345 - добавляем класс - .dropdown-item
+						<pre>--a class="dropdown-item" href="">Категория 1--/a><br>--a class="dropdown-item" href="">Категория 2--/a><br>--a class="dropdown-item" href="">Категория 3--/a><br>--a class="dropdown-item" href="">Категория 4--/a><br>--a class="dropdown-item" href="">Категория 5--/a></pre></li>
+					<li>
+						Добавляем поисковый элемент:
+						<pre>--form class="form-inline">#вся форма .inline хз<br>--div class="input-group"> #div объеденил кнопку и поисковое окно, .input-group - расположил рядом<br>--input type="text" placeholder="Что ищете?"><br>Далее div - кнопки и иконки<br>Закрываем все открытые теги</pre> 
+					</li>
+					<li>Для того чтобы при сужении окна всё кроме логотипа скрывалось, помещаем всё кроме логотипа в дополнительный div и присваиеаем классы:
+						<pre>--div class="collapse navbar-collapse justify-content-between"><br>#.collapse - скрывает всё с панели<br>#.navbar-collapse - открывает при расширении окна, скрывает при сужении<br>#.justify-content - варавнивание контента<br>#-between - выравнивает по правому краю(наш поисковик справа получился</pre>
+						<pre>#.justify-content-start/end/center/between/around/evebly/sm-start/../md-start/../lg-start<br>где sm-md-lg-xl-xxl - это размеры</pre></li>
+					<li>Для отображения элементов при узком экране добавляем кнопку сразу после ссылки брэнда, писваиваем классы
+						<pre>--button class="navbar-toggler bg-primary><br>#.navbar-toggler - класс навбар кнопки<br>#.bg-primary - свет навбар кнопки</pre>
+						<pre>--span class="navbar-toggler-icon">--/span> #иконка для кнопки(гамбургер)</pre>
+					</li>
+					<li>Для того чтобы кнопка заработала, а не просто была, необходимо добавить несколько строк(отдельно от класса, но в теге button):
+						<pre>data-bs-toggle="collapse" <br>data-bs-target="#navbarid" #где в target прописываем id-к которому будем обращатся</pre>
+						<pre>--div id="navbarid" class="collapse navbar-collapse justify-content-between"><br># добавили id который указали в button
+						</pre>
+					</li>
+				</ol>
+			<li><p class="boldertext">Добавляем статическое изображение</p></li>
+				<ol type="a">
+					<li>В ecommerce-project/ecommerce создаём папку static</li>
+					<li>Скачиваем изображение, перещещаем в ecommerce-project/ecommerce/static</li>
+					<li>В settings.py снизу добавляем
+						<pre>STATICFILES_DIRS = [ BASE_DIR / 'ecommerce/static/' ]#из этой папки мы берём(то есть скачиваем туда<br>STATIC_ROOT = BASE_DIR / 'static'#в эту папку при collectstatic - django перемещает все статические файлы</pre></li>
+					<li>В cmd/cd ecommerce-project: (должно загрузится 131 статик файл )
+						<pre>python manage.py collectstatic</pre></li>
+					<li>В home.html после [% extends 'base.html' %] загружаем статические файлы:
+						<pre>{% load static %}</pre></li>
+					<li>В home.html внутри блок-контента, вставляем изображение (через div)
+						<pre>--div class="container-fluid"> #Что бы во всю ширину страницы<br>	--div class="row"> #относится к контейнеру<br>		--img src="{% static 'home_img.jpg' %}"> #имя статического файла<br>	--/div><br>--/div></pre>
+					</li>
+				</ol>
+			<li><p class="boldertext">Добавляем товары</p></li>
+				<ol type="a">
+					<li>В ecommerce-project/ecommerce/static - создаём папку css и images</li>
+					<li>В ecommerce-project/ecommerce/static/images пемечащаем нашу home_img.jpg</li>
+					<li>в home.html меняем путь на:
+						<pre>--img src="{% static 'images/home_img.jpg' %}"></pre></li>
+					<li>На всякий случай, если картинка будет меньне в img Добавим класс .img-fluid, тогда она будет растягиватся по всей ширене всегда
+						<pre>--img class="img-fluid" src="{% static 'images/home_img.jpg' %}"></pre></li>
+					<li>В ecommerce-project/ecommerce/static/css - добавим новый файл - base.css</li>
+					<li>в base.css меняем bg body
+						<pre>body { background: #606060; }</pre></li>
+					<li>В base.html загружаем статические файлы, в самом верху, над тегом html:
+						<pre>{% load static %}</pre></li>
+						<li>В base.html над title добавляем ссылку на наш css-файл
+							<pre>--link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}"></pre></li>
+						<li>Сохраняем все файлы, обновляем страницу - фон серый</li>
+					<li>В home.html внутри блок контента, после изображения - добавляем наши продукты (через div)
+						<pre>--div class="py-4"> #делает отступ от картинки<br>--h1 class="text-capitalize fw-weight-bold">Наша продукция-/h1><br>#.text-capitalize - все первые буквы заглавные<br>#.fw-weight-bold - текст нехначительно жирней</pre>
+					</li>
+					<li>
+						В home.html этот заголовок загоняем в 3 дива container + row + col
+						<br>container - это внешняя часть блока, она чуть уже body, в ней можно размещать множество блоков, строк, столбцов
+						<br>row - строка (сколько угодно)
+						<br>col - столбец (всего можно поделить страницу на 12 столбцов)
+					</li>
+					<li>Для col добавляем классы:
+						<br>.col-10 - ширина 10 из 12
+						<br>.mx-auto - по центру весь блок col
+						<br>.my-2 - отступы блока col сверху и снизу
+						<br>.text-center - центрует текст относительно своего блока(у нас col)
+						<pre>--div class="col-10 mx-auto my-2 text-center"></pre></li>
+					<li>Добавляем товары, так же в новом container + row, продкуты делаем через цикл for:
+						<pre>--div class="container"><br>    --div class="row"><br>            {% for i in '12345678' %} #запустили цикл 8 раз<br>                здесь будет контект<br>            {% endfor %} #законцили цикл<br>    --/div><!-- закрывает row --><br>--/div><!-- закрывает container --></pre></li>
+					<li>В ecommerce-project\ecommerce\static\images добавляю 8 квадратных изображений</li>
+					<li>в цикле for добавляем див col и присваиваем классы:
+						<br>col-9 -  ширина 9из12
+						<br>mx-auto - центруем col
+						<br>col-md-6 - 1столбец будет равен половине col-9(4.5)
+						<br>col-lg-3 - ещё раз поделили зачемто, проще смотреть по факту
+						<pre>--div class="col-9 mx-auto col-md-6 col-lg-3"></pre>
+					</li>
+					<li>Внутри предыдущего diva - добавляем ещё один (карточки), присваиваем класс
+						<br>card - принимает округлую форму карточки
+						<br>mb-4 - отступ вниз от карты
+
+						<pre>--div class="card mb-4"></pre>
+					</li>
+					<li>Внутри div карты, вставляем изображение, указывая путь к одному из статических изображений, и вставляем класс
+						<br>.card-img-top - кртинка будет сверху карты
+						<br>{% static 'images/aston.jpg' %} - путь ecommerce-project\ecommerce\static\images\aston.jpg
+						<pre>--img class="card-img-top" src="{% static 'images/aston.jpg' %}"></pre>
+					</li>
+					<li>Добавляем заголовки к карточкам через div, присваиваем классы:
+						<br>.card-footer - нижняя часть карточки
+						<br>.d-flex - адаптивная утилита flexbox
+						<br>.justify-content-between - выровнеть по всей ширине(в нашем случае карточки)
+						<pre>--div class="card-footer d-flex justify-content-between"></pre>
+					</li>
+					<li>Можно убрать рамку и задний фон у футера карточки
+						<br>style="background: transparent; - убрали фон
+						<br>border-color: transparent; - убрали очертание
+						<pre>style="background: transparent; border-color: transparent;</pre>
+					</li>
+					<li>Внутри diva уже пишем текс, в теге p и присваиваем классы:
+						<br>fw-weight-bolder - текст жирней
+						<br>mb-0 - отступ ноль вниз после текста
+						<pre>--p class="fw-weight-bolder mb-0 bg-primary">Заголовок карточки--/p></pre>
+					</li>
+					<li>Добавляем цены, в теге h5 и присваиваем классы
+						<br>.fst-italic - курсивный текст
+						<br>.text-info - голубой текст
+						<br>
+						
+					</li>
+				</ol>
+			<li><p class="boldertext">Создаём страницу описания товаров (about)</p></li>
+				<ol type="a">
+					<li>Переходим в about.html и base.html - меняем about на "Описание товара"</li>
+					<li>В shop/urls.py - меняем путь about на product
+						<pre>path('product/', views.about, name='product'),</pre></li>
+					<li>about.html меняем на product.html</li>
+					<li>Везде url about тоже меняем на product</li>
+					<li>Везде меняем anout на product [urls.pe, views.py, в html files и тд]</li>
+					<li>В prodduct html - делаем 3 дива container/row/col</li>
+					<li>container<br>
+						py-5 - отступ cверху и снизу 5 - padding top+bottom
+						<pre>--div class="container py-5"></pre></li>
+					<li>row
+						<br>mt-4 - margin top 4</li>
+						<pre>--div class="row mt-4"></pre>
+					<li>col - столбец
+						<br>col-10 - столбец шириной 10 из 12
+						<br>mx-auto - margin left+right-auto - центрирует сам блок col
+						<br>col-md-6 - размер >= 768px
+						<br>my-3 - margin top+bottom-3
+						<pre>--div class="col-10 mx-auto col-md-6 my-3"></pre>
+					</li>
+					<li>Внутри col вставляем img - статическое (путь ecommerce-project/static/)
+						<pre>--img src="{% static 'images/bentleycont.jpg' %}"></pre>
+					Обазятельно добавляем img-fluid - чтобы оно масштабировалось с шириной родительского элемента, и небыло огромным</li>
+					<pre>--img src="{% static 'images/bentleycont.jpg' %}" class="img-fluid"></pre>
+					<li>До блок title вставляем load static
+						<pre></pre></li>
+					<li>Внутри дива row - добавляем ещё один диф col - в нём будем показывать информацию о товаре, все классы col - что и для картинки</li>
+					<li>Внутри col - Добавляем название/цену/описание в h1/p/p - и присваиваем классы, которые будем описывать самостоятельно в css потом
+						<pre>--h1 class="product_title">Aston Martin Vanquish Zagato--/h1><br>--p>50 000$--/p><br>--p class="product_desc">Описание продукта-/p></pre></li>
+					<li>Ниже добавим Lorem text -  и присвоим класс text-justify - который будет выравнивать текст, добавим свой класс product_text
+						<pre>--p class="text-justify product_text">lorem text много текста--/p></pre></li>
+					<li>Ниже ещё абзац с теми же классами "Out of stock - Нет в наличии"</li>
+					<li>Переходим в base.css и добавляем стили для product_title/desc/text
+						<br>Добавил описание для каждого класса в самом css файле
+						<br><span class="boldertext">Свой сайт смотри через Mozilla - там быстрее оьнавляются стили! В гугле есть затупы</span></li>
+
+				</ol>
+			<li><p class="boldertext">Делаем footer</p></li>
+				<ol type="a">
+					<li> Футэр, навбар лечше содержать в отдельных элементах для этого в shop/templetes - создадим отдельные navbar.html footer.html</li>
+					<li>Из base.html вырезаем от --nav> до --/nav-- и вставляем в navbar.html</li>
+					<li>Заместо этого в base.html обращаемся к navbad.html
+						<pre>{% include 'navbar.html' %}</pre></li>
+					<li>{% block content %} {% endblock %} - оставили в base.html хз можно ли убрати или нет</li>
+					<li>Ниже {% endblock %} - обращаемся к footer.html и создаём его в templates
+						<pre>{% include 'footer.html' %}</pre></li>
+					<li>В footer.html делаем div-ы container - размещаем внутри тэгов footer</li>
+					<li>В контеунере создаём параграф и пишем содержимое футера в нём и присваиваем классы
+						<br>.lead - абзац выделяется другим текстом
+						<br>&(без пробела)copy; - значёк 'c'
+						<br>text-center - текст по центру
+						<br>text-light - текст светлый
+						<pre>p class="lead text-center text-light">Сopyright &(без пробела)copy; 2022 International Contract Agency--/p></pre>
+					</li>
+					<li>В теге footer присвоим классы navbar - чтобы было всё похоже
+						<pre>footer class="bg-dark text-white mt-5 p-5"></pre></li>
+				</ol>	
+			<li><p class="boldertext">Создаём Product и Category модели</p></li>
+				<ol type="a">
+					<li>В ecommerce-project/shop/models.py - создаём класс category
+						<pre>#cсоздали класс категории<br>#унаследовали этому классу все фичи models.Model<br>class Category(models.Model):<br><br>    #models.CharField поле для строк малого и большого размера<br>    #max_length=250 - длина максимум 250<br>    #unique=True - поле будет уникальным и оно будет присваивать инжекс<br>    name = models.CharField(max_length=250, unique=True)<br><br>    #Slug - газетный термин. Слаг - это короткая метка для чего-либо, содержащая только буквы, цифры, подчеркивания или дефисы. Они обычно используются в URL.<br>    slug = models.SlugField(max_length=250, unique=True)<br><br>    #models.TextField - Большое текстовое поле. Виджет формы по умолчанию для этого поля Textarea.<br>    #blank=True - если вы хотите разрешить пустые значения в формах, как для строковых, так и для нестроковых полей<br>    description = models.TextField(blank = True)<br><br>    #ImageField - изображение. Наследует все атрибуты и методы из FileField, но также проверяет, что загруженный объект является допустимым изображением.<br>    #upload_to='category' - путь, будет загружать в папку category<br>    #null=True - Это свойство позволяет базе данных оставлять поле пустым, если мы добавили пост в базу данных, но ещё не опубликовали.<br>    #blank=True - Если null=True управляет поведением базы данных, тоblank=True настраивает поведение админки и Django-форм.<br>    #Если для поля published_at не указан blank=True, то админка запретит нам сохранить пост, и потребует заполнить поле published_at.<br>    image = models.ImageField(upload_to='category', blank=True)<br><br>    #для того чтобы когда мы каждый раз будем обращатся к объекту категории, будет показыватся имя - название поля<br>    #self - собственный- личный<br>    def __str__(self):<br><br>        #Будет показывать имя модели (name переменная, указали выше)<br>        return self.name</pre>
+					</li>
+					<li>Создаём класс Product [name/slug/description - копируем из класса Categorii]</li>
+					<li>Добавляем ещё две переменнуу в класс Product
+						<pre>class Product(models.Model):<br>    name = models.CharField(max_length=250, unique=True)<br>    slug = models.SlugField(max_length=250, unique=True)<br>    description = models.TextField(blank = True)<br><br>    #Отношения многие-к-одному. Требуются два позиционных аргумента: класс, к которому относится модель, и опция<br>    #те каждый продукт может быть соединён с одной категорией, а одна категория может относится к несольким продуктам<br>    #Сategoty - Обращаемся к модели/классу категории<br>     #on_delete= - При удалении объекта, на который ссылается ForeignKey, Django будет эмулировать поведение ограничения SQL, заданного аргументом on_delete<br>    #Каскадное удаление. Django эмулирует поведение ограничения SQL ON DELETE CASCADE, а также удаляет объект, содержащий ForeignKey<br>    category = models.ForeignKey(Category, on_delete=models.CASCADE)<br><br>    #Десятичное число с фиксированной точностью, представленное в Python экземпляром<br>    #max_digits - Максимально допустимое количество цифр в номере. Обратите внимание, что это число должно быть больше или равн<br>    #decimal_places - Количество десятичных разрядов для хранения с числом.<br>    price = models.DecimalField(max_digits=10, decimal_places=2)<br><br>    image = models.ImageField(upload_to='product', blank=True)<br><br>    #Целое число. Значения от -2147483648 до 2147483647 безопасны<br>    stock = models.IntegerField()<br><br>    #BooleanField - Поле истина/ложь<br>    #default=True - стандартно есть в наличии<br>    available = models.BooleanField(default=True)<br><br>    #Поле дата время<br>    #auto_now_add - Автоматически установить поле на сейчас, когда объект создается впервы<br>    created = models.DateTimeField(auto_now_add = True)<br><br>    #auto_now - Автоматически устанавливать текущую дату каждый раз, когда объект сохраняется.<br>    updated = models.DateTimeField(auto_now=True)</pre></li>
+					<li>Добавляем __str__ - метод для Класса Product - полностью копируем из класса Category
+						<pre>def __str__(self):<br>    return self.name</pre></li>
+					<li>Добавляем модуль pillow чтобы было удобно управлять изображениями
+						<ul>
+							<li>Выходим из сервера в cmd</li>
+							<li><pre>pip install Pillow</pre></li>
+						</ul>
+					</li>
+					<li>В eccomerce-project/eccomerce/settings.py добавляем media_url и media_root - в самом низу под static root
+						<pre>MEDIA_URL = '/media' #добавили url - будет отображатся в браузере<br>MEDIA_ROOT = BASE_DIR / 'static' / 'media' #будет загружать медия в static/media</pre></li>
+					<li>В eccomerce-project/eccomerce/urls.py - импортируем из джанго конфигурации
+						<pre>from django.conf import settings<br>from django.conf.urls.static import static</pre></li>
+					<li>Там же в url.py после urlpatterns
+						<pre>#Для обновление url-ов в Дебаг моде<br>if settings.DEBUG: #if settings.DEBUG = True<br>    #в список путей будут добавлятся пути MEDIA_URL и MEDIA_URL<br>    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)</pre></li>
+					<li>Аналогично для папки static
+						<pre>if settings.DEBUG:<br>    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)</pre></li>
+					<li>В В eccomerce-project/shop/admin.py - добавляеми в админку наши модели категории и продукты
+						<ul>
+							<li>Для этого импортируем классы
+								<pre>#из ecommerce-project/shop(app)/models.py импортировали наши классы<br>from .models import Category, Product</pre></li>
+								<li>Ниже регистрируем наши модели
+									<pre>admin.site.register(Category)<br>admin.site.register(Product)</pre>
+								</li>
+						</ul>
+					</li>
+					<li>Переходим в терсинал/ останавливаем сервер/ cd ecommerce-project/ сохраняем все файлы</li>
+					<li>Делаем миграции (в итоге получим ощибку) Field.__init__() got an unexpected keyword argument 'decimal_place'
+						<pre>python manage.py makemigrations</pre></li>
+					<li>В models.py исправляем ошибку price = models.DecimalField(max_digits=10, decimal_places=2)  - decimal_place в decimal_places </li>
+					<li>В settyngs.py в MEDIA_URL добавляем /
+						<pre>MEDIA_URL = '/media/'</pre></li>
+					<li>Повторяем makemirgations
+						<pre>python manage.py makemigrations</pre></li>
+					<li><span class="boldertext">ВСЕГДА СМОТРИ ОШИБКИ ПОСЕ makemigrations, только после этого продолжай!</span></li>
+					<li>Каждая миграция — это файл с инструкциями для базы данных. Все они пронумерованы по порядку. Миграция — это описание изменений, которые вы хотите внести в таблицы базы данных. Например, у вас есть модель поста в блоге. Для того, чтобы в базе данных произошли изменения, нужно её отмигрировать, т.е. создать миграцию, которая объяснит базе данных, как ей измениться.
+						<p>Если вы уже проводили миграции в своём проекте, то Django сравнит текущий файл models.py с историей миграций. Django сама определит, что нужно убрать из моделей, а что — добавить, чтобы отмигрировать базу данных к новым моделям.</p>
+					</li>
+					<li>Команда python manage.py migrate запускает миграции в базе данных.
+						<pre>python manage.py migrate</pre></li>
+					<li>Создаём супер-юзера
+						<pre>python manage.py createsuperuser<br>Адрес электронной почты: elproject220@yandex.ru<br>Password:blog1234</pre></li>
+					<li>В settings.py поменяем время на московское TIME_ZONE</li>
+					<li>Запускаем сервер, еперходим в админку</li>
+					<li>В models.py внутри класса Caterory добавляем класс (до self) Meta - чтобы в админке корректно указывались названия категорий, думаю можно указать и на руссском
+						<pre>class Meta:<br>    verbose_name = "Категория" #имя в единственном числе<br>    verbose_name_plural = "Категории" #имя во множественном числе</pre></li>
+					<li>Аналогично делаем и с моделью/классом Product</li>
+					<li>Для того чтобы категории и продукты упорядовачились по имени, в классы Meta добавим строчку
+						<pre>ordering = ('name',)</pre></li>
+					<li>Так как изменения были в модели, необходимо моддели заново подгрузить в базу данных, то есть сначала применить миграции, потом подгрузить (ОБЯЗАТЕЛЬНО сохранить все файлы и остановить сервер перед этим)
+						<pre>python manage.py makemigrations<br>python manage.py migrate</pre>
+					</li>
+					<li>Запускаем сервер заходим в админку</li>
+					<li>Добавляем категории - немецкие американские английские японские итальянские 5штук</li>
+					<li>Добавляем продукты 8 штук</li>
+					<li>Сохраняемся - пушим в репозиторий</li>
+				</ol>		
+
+			<li><p class="boldertext">Отображаем товары на домашней странице</p></li>
+				<ol type="a">
+					<li>Из django.shortcuts импортируем get_object_or_404
+						<pre>from django.shortcuts import render, get_object_or_404</pre></li>
+					<li>Импортируем классы Category и Product [из shop/models.py]
+						<pre>from .models import Category, Product</pre></li>
+					<li>В shop/views.py - дополняем функцию home<br>
+						<span class="boldertext">Полностью не разобрался, заполни пробелы в голове</span> Функциф home - получилась такой:
+						<pre>def home(request, category_slug=None):<br>    category_page = None<br>    products = None<br>    if category_slug != None:#если в category_slug что то есть<br>        category_page = get_object_or_404(Category, slug=category_slug)<br>        products = Product.objects.filter(category=category_page, available=True)<br>    else:#если category_slug пустой<br>        products = Product.objects.all().filter(available=True)<br><br>    #путь к ecommerce/shop/templates/home.html<br>    return render(request, 'home.html', {'category':category_page, 'products':products})</pre>
+					</li>
+					<li>В shop/urls.py добавляем путь
+						<pre>path('--slug:category_slug>', views.home, name='products_by_category'),<br>#путь URL по нашему слагу localhost/../имя slug-a</pre></li>
+
+
+					<li>В home.html, делаем цикл for product(это переменная i) - products - это весь смисок продуктов, то есть сколько продуктов в DB -  столько и будет циклов
+						<pre>{% for product in products %}</pre>
+					</li>
+					<li>В home.html в img - где карты меняем src=""
+						<pre>ссылка класс Product, переменная image<br>--img class="card-img-top" src="{{ product.image.url }}"></pre>
+					</li>
+					<li>В img Добавляем элемент alt. <br>Alt (Альт) – это атрибут для тега img, в котором устанавливается альтернативный текст для изображения. Текстовая информация отображается при отключенной загрузке графики в браузере
+						<pre>alt="{{ product.name }}</pre></li>	
+					<li>{{ product.name }} - добавляем в параграф(вместо Астон)
+						<pre>{{ product.name }}</pre></li>
+					<li>Отображаем цену в тегах h5
+						<pre></pre>
+					</li>
+
+				</ol>
+			<li><p class="boldertext">Добавляем категории в Navbar</p></li>
+				<ol type="a">
+					<li>В shop/ создаём новый файл - context_processors.py<br>
+					Этот файл будет принимать один аргумент и возвращать словарь - должен быть доступен в любом месте нашего кода</li>
+					<li>В shop/context_processors.py - из shop/models.py импортируем класс/модель категории
+						<pre>from .models import Category</pre>
+					</li>
+					<li>Создаём функцию menu_links
+						<pre>def menu_links(request):<br>    links = Category.objects.all()#Все объекты модели категории<br>    return dict(links=links)#возвращает словаль с сылкамии</pre>
+					</li>
+					<li>В settings.py в [TEMPLATES=]/{OPTIONS:} - добавляем функцию menu_links из context_processors.py
+						<pre>'shop.context_processors.menu_links',</pre>
+					</li>
+					<li>Переходим в navbar [navbar.html] - в теле div-a dropdown-menu запускаем цикл for, в ссылке пишем код чтобы получать url категории, закрываем цикл - получилось так: 
+						<pre>--div class="dropdown-menu"><br>    {% for Category in links %}<br>    --a class="dropdown-item" href="{{ Category.get_url }}">{{ Category.name }}--/a><br>    {% endfor %}<br>--/div></pre>
+					</li>
+					<li>В shop/models.py - импортируем из django.urls - reverse
+						<pre>from django.urls import reverse<br>#добавили чтобы получать функицию по url категориям.</pre>
+					</li>
+					<li>В shop/models.py - в class Category - до __str__ - добавляем функцию get_url. В shop/urls.py берём название категории - products_by_category:
+						<pre>#для отображени  url  в категориях navbar<br>def get_url(self):<br>    #products_by_category из shop/urls.py<br>    #args=[self.slug] - получение слага, не понятно как<br>    return reverse('products_by_category', args=[self.slug])</pre>
+					</li>
+					<li>Теперь в навбаре открываются ссылки категорий, и при нажатии показывается только выбранные модели авто</li>
+					<li>В navbar.html. в теле div-a dropdown-menu но до цикла for добавляем строчку
+						<pre>--a class="dropdown-item" href="{% url 'home' %}">Все машины--/a></pre></li>
+					<li>В navbar.html - в ссылке иконки брэнда [navbar-brand] - вместо # ставим /</li>
+				</ol>
+			<li><p class="boldertext">Отображаем подробную информацию о товаре из БД</p></li>
+				<ol type="a">
+					<li>В shop/views.py - дополняем функцию product, получилось так:
+						<pre>def product(request, category_slug, product_slug):<br>    #category__slug - здесь получис slug из Сategory<br>    product = Product.objects.get(category__slug=category_slug, slug=product_slug)<br>    #exept - это исключения. Exception - класс исключений в python<br>    except Exception as e:#код выполнится если будут исключения<br>        # raise - привликать, поднимать<br>        raise e<br>    return render(request, 'product.html', {'product': product})</pre>
+					</li>
+					<li>В product.html - отображаем название товара, цену, описание продукта
+						<pre>{{ product.name }}<br>{{ product.price }}<br>{{ product.description }}</pre>
+					</li>
+					<li>Наличие будем показывать так, ели число на складе будет больше нуля то укажим ссылку добавить в карзину, если меньше или равно нулю указываем "Нет в наличии", Для этого в product.html делаем конструкцию if
+						<pre>{% if Product.stock <= 0 %} #если наличие меньше или равно нулю<br>--p class="text-justify product_text">Нет в наличии--/p> #указываем Нет в наличии<br>{% else %} #иначе<br>--a href="">Добавить в Корзину--/a> #ссылка на Добавить в корзину<br>{% endif %} #конец конструкции if</pre>
+					</li>
+					<li>В shop/urls.py - пеняем путь product
+						<pre>path('--slug:category_slug>/--slug:product_slug>', views.product, name='product_detail'),</pre>
+					</li>
+					<li>В shop/models.py - в Product - до __str__ - добавляем функцию
+						<pre>def get_url(self):<br>    return reverse('product_detail', args=[self.category.slug, self.slug])</pre>
+					</li>
+					<li>Переходим в home.html - для использования get_url для Product.
+						До изображения добавляем ссылку a, и само изображение помещаем между тегов a - /a, в ссылке отображаем гет юрл метод
+						<pre>--a href="{{ product.get_url }}"><br>    --img class="card-img-top" src="{{ product.image.url }}" alt="{{ product.name }}"><br>--/a></pre>
+					</li>
+					<li>Переходим в product.html - Заменяем статическое изображение, на изображение из базы данных
+						<pre>--img src="{{ product.image.url }}" class="img-fluid"></pre></li>
+				</ol>
+			<li><p class="boldertext">Создаём template для корзины товараров</p></li>
+				<ol type="a">
+					<li>В shop/urls.py - добавим путь для корзины
+						<pre>path('cart', views.cart, name='cart'),</pre>
+					</li>
+					<li>В shop/views.py - создаём функцию cart
+						<pre>def cart(request):<br>    return render(request, 'cart.html')</pre>
+					</li>
+					<li>В shop/templates - создаём catr.html</li>
+					<li>В catr.html - добавляем навбар и футер, копируем из home.html - наследование из этих файлов
+						<pre>{% extends 'base.html' %}<br>{% load static %}<br>{% block title %}<br>    Корзина<br>{% endblock %}<br>{% block content %}<br><br><br>{% endblock %}</pre>
+					</li>
+					<li>Сохраняемся и получсем ошибку, для её исправления корректируем пути те что со слагами
+						<pre>def cart(request):<br>    return render(request, 'cart.html')</pre>
+					</li>
+					<li>В catr.html - добавляем divы, таблиц выерстаем страницу
+					</li>
+					<li><span>Основные Bootstrap и CSS фишки (в cart.html):</span>
+						<pre>--div class="row mx-auto"> #центруем кол<br>.text-center/start/end #текст в центре, слева, справа<br>.d-grid gap-2 #растянуть по всему 
+							лементу, например кнопку<br>.style="text-decoration: none; #чтобы при неведени и на кнопку, не выделялся текст, как ссылка<br>--table class="table"> - вид таблицы в bootstrap<br>card-table, card-thed - не работают<br>--button type="button" class="btn btn-primary btn-lg"> #кнопка/тип кнопка/ бутструп классы - кнопка, цвет голубой, большая</pre>
+					</li>
+					<li>Описание тегов html таблицы
+						<pre>table - таблица<br>thead - голова таблицы<br>tr - строка<br>td - столбец<br>th - заголовок в таблице<br>--th colspan="4> - заголовок будет растянут на столбца </pre>
+					</li>
+
+					<li>Присваиваем класса cart-table, catr-thead, cart-icon  - эти классы будем описывать в cart.css</li>
+					<li>В ecommerce-project\ecommerce\static\css - создаём cart.css</li>
+					<li><span>ecommerce-project\ecommerce\static\css - мы загружаем статические файлы
+						<br>\ecommerce-project\static\css - djando сам коллекционирует
+						</span>
+					</li>
+					<li>В base.html добавляем связь с cart.css - точно так же как и связывали base.css
+						<pre>--link rel="stylesheet" type="text/css" href="{% static 'css/cart.css' %}"</pre>
+					</li>
+					<li>
+						Некоторые свойстав из cart.css
+						<pre>min-width: 480px; #по сути ширина - минимальная ширина<br>font-size: 14px; #размер текта<br>font-weight: normal; #шрифт толщина<br>text-transform: uppercase; #заглавные буквы<br>letter-spacing: .2em; #интервал между символами<br>background-color: #212529 !important; цвет фона/ !important - это приоритетность#</pre>
+					</li>
+				</ol>
+
+			<li><p class="boldertext">Создаём model для корзины</p></li>
+				<ol type="a">
+					<li>В models.py - новый класс,новую модель Cart
+						<pre>class Cart(models.Model):<br>    cart_id = models.CharField(max_length=250, blank=True)<br>    date_added = models.DataField(auto_now_add=True)<br>    class Meta:<br>        ordering = ['date_added'] #сортировка<br>        db_table = 'Cart' #название таблицы<br>        def __str__(self): #репезентация объекта<br>            return self.cart_id</pre>
+					</li>
+					<li>Создадим ещё однин класс - CartItem:
+						<pre>#CartItem - информация об одном продукте, об одном товаре добавленном в карзину<br>class CartItem(models.Model):<br>    product = models.ForeignKey(Product, on_delete=models.CASCADE)#отношение к модели Product<br>    cart = models.ForeignKey(Cart, on_delete=models.CASCADE)<br>    quantity = models.IntegerField()#количество товаров в корзине<br>    active = models.BooleanField(default=True)<br>    class Meta:<br>        db_table = 'CartItem'<br>    #метод будет высчитывать полную сумму товаров в зависимости от цены и количества в корзине<br>    def sub_total(self):<br>        #прайс из Product * колво в корзине<br>        return self.product.price * self.quantity<br>    def __str__(self): #репезентация объекта<br>        return self.product</pre>
+					</li>
+					<li>Обнавляем базу данный - makemigrations - [перед этим выйти из сервера и всё сохранить] - cd ecommerce-project:
+						<pre>python manage.py makemigrations</pre>
+					</li>
+					<li>Смотрим есть ли ошибки после makemigrations - в cmd - если есть истправляем - до тех пор пока ошибок будет 0</li>
+					<li>После makemigrations нет ошибок - делаем migrate
+						<pre>python manage.py migrate</pre>
+					</li>
+					<li>Запускаем сервер, проверяем всё ли работает что делали ранее</li>
+					<li>Переходим в shop/views.py - удалим метод def cart - полностью</li>
+					<li>В shop/views.py - создаём новый метод
+						<pre>#корзина будет сохраняемая в этой сессии пока пользователь будет на сайте<br>def _cart_id(request):<br>    cart = request.session.session_key<br>    if not cart:<br>        cart = request.session.create()<br>    return cart</pre>
+					</li>
+					<li>В shop/views.py - импортируем модели Cart, CartItem
+						<pre>from .models import Category, Product, Cart, CartItem</pre>
+					</li>
+					<li>
+						Создаём функцию add_cart:
+						<pre># add_cart - метод чтобы добавлять товары, обновлять их количчество в корзине, и комбинировать их в один cart_item Объек<br>def add_cart(request, product_id):<br>    product = Product.objects.get(id=product_id)<br>    #преждевсего пытаемся получить объект cart - из текущей сессии<br>    try:<br>        #используем метод get - получить<br>        cart = Cart.objects.get(cart_id=_cart_id(request))<br>    #Если такого объекта нет, мы создаём пустой объект и присваиваем в переменной<br>    except Cart.DoesNotExist:#если корзины не существует<br>        #тогда создаём переменную cart и присваиваем Cart.objects Но уже используем метод create - создать новую корзину<br>        cart = Cart.objects.create(cart_id=_cart_id(request))<br>        #сохраняем состояние<br>        cart.save()<br><br>    #почти тоже самое для класса CartItem<br>    try:<br>        cart_item = CartItem.objects.get(product=product, cart=cart)<br>        cart_item.quantity += 1# обновляем количество<br>        cart_item.save()<br>    except CartItem.DoesNotExist:<br>        cart_item = CartItem.objects.create(product=product, quantity=1, cart=cart)<br>        cart_item.save()<br><br>    #redirect - Переадрезация<br>    #перенаправляем пользователя на url cart_detail - чтобы обновить все элементы в корзине в текущей сессии<br>    return redirect('cart_detail')</pre>
+					</li>
+					<li>В views.py импортируем - ObjectDoesNotExist
+						<pre>from django.core.exceptions import ObjectDoesNotExist</pre></li>
+					<li>
+						В views.py импортируем - из from django.shortcuts - redirect
+						<pre>from django.shortcuts import render, get_object_or_404, redirect</pre>
+					</li>
+					<li>Создаём метод/функцию cart_detail - которая будет извлекать все продукты и калькулировать полную сумму всех cart_item эелементов в корзине
+						<pre>#функция будет извлекать все продукты и калькулировать полную сумму всех cart_item элементов в корзине<br>#изначатьно в итог сумма=0, количество элементов=0, в корзине нет элементов<br>def cart_detail(request, total=0, counter=0, cart_items=None):<br>    #пробуем получить в текущей сессии (если есть в корзине что то)<br>    try:<br>        cart = Cart.objects.get(cart_id=_cart_id(request))<br>       cart_items = CartItem.objects.filter(cart=cart, active=True)<br>        #высчитываем total<br>        for cart_item in cart_items:<br>            total += (cart_item.product.price * cart_item.quantity) #сумма<br>            counter += cart_item.quantity #количество<br><br>   #если получить в текущей сессии ничего не можем, тогда<br>    except ObjectDoesNotExist:<br>        pass#игнорируем<br>    return render(request, 'cart.html', dict(cart_items=cart_items, total=total, counter=counter))</pre>
+					</li>
+				</ol>
+			<li><p class="boldertext">Обнавяем UI(user interface) корзины</p></li>
+				<ol type="a">
+					<li>В cart.html добавляем (внутри блок контента сверху)
+						<pre>{% if not cart_items %} - проверяем есть ли в корзине какието элементы</pre>
+					</li>
+					<li>До endblock - закрываем if
+						<pre>{% endif %}</pre>
+					</li>
+					<li>Создаём блок который будет показыватся если корзана будет пуста, сразо под if [Ваша корзина пуста, нажмитю сюда чтобы продолжить покупки, и ссылка url 'home']</li>
+					<li>Ставим {% else %} - иначе, т.е корзтина не пуста, будем показывать основной блок корзины, товары, сумма, цена и так далее</li>
+					<li>
+						Меняем все заглушки на настоющий товар, суммы, количества в блоке гниже else
+						<pre>{% for i in '123' %} --> {% for cart_item in cart_items %}</pre>
+						<pre>-a href=""> --> --a href="cart_item.product.get_url"></pre>
+						<pre>{% static 'images/lexus.jpg' %} --> {{ cart_item.product.image.url }}</pre>
+						<pre>Название --> {{ cart_item.product.name }}</pre>
+						<pre>SKU: {{ cart_item.product.id }}</pre>
+						<pre>Цена за штуку: {{ cart_item.product.price }}</pre>
+						<pre>Количество товара: Количество товара: {{ cart_item.product.quantity }} Х {{ cart_item.product.price }}</pre>
+						<pre>4 000 000 $ --> $ {{ cart_item.sub_total }}</pre>
+					</li>
+					<li>Перед иконками добавим концтркуцию if
+						<pre>{% if cart_item.quantity < cart_item.product_stock %}</pre>
+					</li>
+					<li>
+						Сразу добавим else и endif
+						<pre>{% else %}<br>{% endif %}</pre>
+					</li>
+					<li>Всю ветку td c иконками вырезаем и вставляем после if</li>
+					<li>
+						В первой ссылке добавляем
+						<pre>a href="{% url 'add_cart' %}"></pre>
+					</li>
+					<li>В блок else добавим только две иконки без добавить</li>
+
+				<li>
+					Далее, уже ниже endif
+					<pre>Сумма для товаров в корзине:..400000$. --> Сумма для товаров в корзине: --strong>$ {{ total }}--/strong></pre>
+				</li>
+				<li>
+					В ссылке, для кнопки 'Назад в магазин', добавляем url 'home'
+					<pre>--a href="{% url 'home' %}" style="text-decoration: none;"></pre>
+				</li>
+				<li>В shop/urls.py - добавляем путь, где будем вызывать add_cart-метод и передавать - product_id
+					<pre>path('cart/add/--int:product_id>', views.add_cart, name='add_cart'),</pre>
+				</li>
+				<li>Меняем путь cart
+					<pre>path('cart', views.cart, name='cart'), --> path('cart', views.cart_detail, name='cart_detail'),</pre>
+				</li>
+				<li>В product.html - в ссылку 'Добавить в корзину' добавляем:
+					<pre>a href="{% url 'add_cart' product.id %}">Добавить в Корзину--/a></pre>
+				</li>
+				<li>Сохранёем, обнавляем - есть ошибки, нет значка добавить, не отображается quantity(не правильная формула в Количество товара)</li>
+				<li>В cart.html - Исправляем ошибку в блоке if
+					<pre>{% if cart_item.quantity < cart_item.product_stock %} --->  {% if cart_item.quantity < cart_item.product.stock %}</pre>
+					<p>Добавилась иконка корзины, она работает - можно добавлять столько товара , сколько есть на складе</p>
+				</li>
+				<li>Меняем количество товара тоже в cart.html:
+					<pre>Количество товара: {{ cart_item.product.quantity }} Х {{ cart_item.product.price }} -->  Количество товара: {{ cart_item.quantity }} Х {{ cart_item.product.price }}</pre>
+				</li>
+				<li>Сохраняем и push-им в репозиторий</li>
+				</ol>
+			<li><p class="boldertext">Уменьшение и удаление товаров из корзины</p></li>
+				<ol type="a">
+					<li>
+						Испрравляем bag - из за которого можно добавить в корзину товаров больше чем есть на скаладе.
+						<br>Для этого в shop/views.py -  в функции add_cart - cart_item.quantity += 1, добавляем структуру if
+						<pre>if cart_item.quantity < cart_item.product.stock: #будем увеличивать только в этом случае<br>    cart_item.quantity += 1# обновляем количество</pre>
+					</li>
+					<li>В context_processors.py  - добавим иконку в navbar - которая будет показывать количество элементов в корзине</li>
+					<li>В В context_processors.py иппортируем - _cart_id
+						<pre>from .views import _cart_id</pre>
+					</li>
+					<li>
+						В В context_processors.py иппортируем - Cart, CartItem
+						<pre>from .models import Category, Cart, CartItem</pre>
+					</li>
+					<li>
+						В context_processors.py - создаём функцию counter:
+						<pre>def counter(request):<br>    item_count = 0<br>    #если в запросе есть admin<br>    if 'admin' in request.path:<br>        #возвратим пустой словарь, ничего делать не нужно<br>        return {}<br>    else: #иначе<br>        try: #если в корзине что то есть<br>            cart = Cart.objects.filter(cart_id=_cart_id(request))<br>            #[:1] - будет возвращатся только 1 обхект cart_item<br>           cart_items = CartItem.objects.all().filter(cart=cart[:1])<br>            for cart_item in cart_items:#проходим через каждый cart_item<br>                item_count += cart_item.quantity #прибавляем каждый quantity<br>        except Cart.DoesNotExist: #если корзина пуста<br>            item_count = 0<br>    #выводим словарь который содержит переменную item_count<br>    return dict(item_count=item_count)</pre>
+					</li>
+					<li>Регистрируем функцию в settings.py - в [TEMPLATES] - {'OPTIONS':['context_processors']}:
+						<pre>'shop.context_processors.counter',#добавлили</pre>
+					</li>
+					<li>
+						Переходим в navbar.html - добавим иконку корзыг-из cart.html - после О нас - добавляем теги li-a-span(для иконки)
+						<pre>--li class="nav-item"><br>    --a class="nav-link text-light text-uppercase fw-weight-light px-3" href=""><br>        --span class="material-symbols-sharp cart-icon">shopping_cart_checkout--/span>()</pre>
+					</li>
+					<li>
+						До li добавим проверку if - после /li - endif
+						<pre>{% if item_count > 0 %}<br>{% endif %}</pre>
+					</li>
+					<li>
+						Внутри скобок добавляем ({{item_count}})
+						<pre>--span>({{item_count}})--/a></pre>
+					</li>
+					<li>Внутри этой ссылки href
+						<pre>--a class="nav-link text-light text-uppercase fw-weight-light px-3" href="{% url 'cart_detail' %}"></pre>
+					</li>
+					<li>
+						Переходим в shop/views.py создаём функцию уменьшийть корзину
+						<pre>def cart_remove(request, product_id): #уменьшийть корзаину<br>    cart = Cart.objects.get(cart_id=_cart_id(request))<br>    #находим продукт количество которого мы должны обновить используя get-404<br>    product = get_object_or_404(Product, id=product_id)<br>    cart_item = CartItem.objects.get(product=product, cart=cart)<br>    if cart_item.quantity > 1:<br>        cart_item.quantity -= 1<br>        cart_item.save()<br>    else:<br>        cart_item.delete()<br>    return redirect('cart_detail')</pre>
+					</li>
+					<li>В shop/urls.py - добавляем путь
+						<pre>path('cart/remove/--int:product_id>', views.cart_remove, name='cart_remove'),</pre>
+					</li>
+					<li>В cart.html - В иконке минус- это вторая - indeterminate_check_box - в href
+						<pre>{% url 'cart_remove' cart_item.product.id %}</pre>
+					</li>
+					<li>Этот же путь в блоке else</li>
+					<li>Сохраняем все файлы - проверяем минус из корзины- всё работает!</li>
+					<li>Наполняем корзину разными товарами</li>
+					<li>
+						В shop/views.py - создаём ещё 1 метод, основу можно скопировать с def cart_remove
+						<pre>def cart_remove_product(request, product_id): #удалить полностью товар из корзины<br>    cart = Cart.objects.get(cart_id=_cart_id(request))<br>    product = get_object_or_404(Product, id=product_id)<br>    cart_item = CartItem.objects.get(product=product, cart=cart)<br>    сart_item.delete()<br>    return redirect('cart_detail')</pre>
+					</li>
+					<li>
+						В shop/urls.py - добавляем путь
+						<pre>path('cart/remove_product/--int:product_id>', views.cart_remove_product, name='cart_remove_product'),</pre>
+					</li>
+					<li>
+						В cart.html - добавляем ссылки к иконке delete - за основу можно брыть иконку минус просто добавить - _product
+						<pre>--a href="{% url 'cart_remove_product' cart_item.product.id %}"></pre>
+					</li>
+					<li>Сохраняем - проверяем - push to git</li>
+				</ol>
+			<li><p class="boldertext">Исправил баг, с открыванием их корзины, добавил кнопку добавить в корзину</p></li>
+				<ol type="a">
+
+				</ol>
+			<li><p class="boldertext">Регистрация пользователя</p></li>
+				<ol type="a">
+					<li>Заходим в админ панель, добавляем Группу - 'User'</li>
+					<li>В ecommerse-project/shop - добавляем новуыйй файл - form.py</li>
+					<li>
+						В shop/forms.py - импортируем все нужные клыссы
+						<pre>from django import forms<br>from django.contrib.auth.forms import UserCreationForm<br>from django.contrib.auth.models import User</pre>
+					</li>
+					<li>
+						В shop/forms.py - создаём новый класс - SignUpForm:
+						<pre>#UserCreationForm класс - используется, если хотим Usera по умолчанию<br>#В нём есть USERNAME and Password<br>#для добавления других полей мы и создаём класс<br>class SignUpForm(UserCreationForm):<br>    #required=True - поле не может быть пустым или иметь none<br>    first_name = forms.CharField(max_length=100, required=True)<br>    last_name = forms.CharField(max_length=100, required=True)<br>    email = forms.EmailField(max_length=250, help_text='eg. youremail@yandex.ru')<br><br>    class Meta:# при создани -пользователь будет сохранятся в таблице User<br>        model = User<br>        #fields - поля<br>        fields = ('first_name', 'last_name', 'username', 'password1', 'password2')</pre>
+					</li>
+					<li>
+						В shop/views.py - создадим функцию которая управляет запросом сайта
+						<br>Для начала импортируем всё необходимое в views.py
+						<pre>from django.contrib.auth.models import Group, User<br>from .forms import SignUpForm</pre>
+					</li>
+					<li>В views.py - создаём саму функцию - signUpView
+						<pre>def signUpView(request):<br>    #POST- это метод запроса<br>    if request.method == 'POST':<br>        orm = SignUpForm(request.POST)<br>        if form.is_valid(): #проверяем форму, valid-действительность<br>            form.save() #В этом случае сохраняем форму<br>            #мы будем находить пользователя из базы данных по username<br>            username = form.clean_data.get('username')<br>            signup_user  = User.objects.get(username=username)<br>            #помещаем usera - в группу которую мы создали в админке 'User'<br>            user_group = Group.objects.get(name='User')<br>            user_group.user_set.add(signup_user)#!!!??? возможно не сработает<br>    else: #если запрос не POST<br>        form = SignUpForm() #присваиваем пустую форму<br>    #будет выводится шаблон signup.html, и передовать переменную form в этот шаблон<br>    return render(request, 'signup.html', {'form':form})</pre>
+					</li>
+					<li>В shop/tamplates - создаём signup.html</li>
+					<li>
+						В signup.html - копируем весь необходимый код из home.html - 
+						<pre>{% extends 'base.html' %} - берём из base.html<br>{% load static %} - подгружаем статические файлы<br>{% block title %} название страницы(Создать новый аккаунт) {% endblock %} - название страницы, смотри в title base.html<br>{% block content %} - начало контента из base.html<br><br><br>{% endblock %} - конец контента из base.html</pre>
+					</li>
+					<li>Внутри block content - делаем проверку, создаём div и конструкцию if
+						<pre>{% if not form.is_valid %} #если форма не валидна<br>{% else %}<br>{% endif %}</pre>
+					</li>
+					<li>Если форма не валидна - будем опять отправлять пустую форму - внутри конструкции if создаём div - там всё понятно - ЗАголовок-'создать новый аккаунт, текст-для создание аккаунта введите инфу.
+						<br>Далее опишу саму форму с кнопкой:
+						<pre>--form action="post"><br>    {% csrf_token %}<br>    --p>{{ form }}--/p><br>    --button type="submit" name="button" class="btn btn-secondary">Создать--/button><br>--/form></pre>
+					</li>
+					<li>Если всё впорядке, пишем внутри блока else - так же в dive - Заголовок:ваш аккаунт создал, текст: аккаунт создан и готов к использованию, ссылка начтаь/продолжить покупки в href url 'home'
+						<pre>--a href="{% url 'home' %}">Начать покупки--/a></pre></li>
+					<li>
+						Переходим в ecommerce-project/ecommerce/static/css - base.css
+						<br>Добавляем:
+						<pre>.errorlist li {color: red; font-weight: bold;}</pre>
+						errorlist class - сушествует в django форме - по умолчанию
+					</li>
+					<li>В shop/urls.py - добавим путь - account/create
+						<pre>path('account/create/', views.signUpView, name='signup'),</pre>
+					</li>
+					<li>Сохраняемся, пробуем перейти по пути - http://127.0.0.1:8000/account/create/ - должна показаться форма</li>
+					<li>Сохраняемся и push-им в репозиторий</li>
+				</ol>
+			<li><p class="boldertext">Стилизация формы</p></li>
+				<ol type="a">
+					<li>Переходим в терминал (внутри нашего окружения)
+						<pre>(virt1) C:\Users\Александр\IdeaProjects\Udemy_YouRa\DjangoProjects\ecommerce-project></pre>
+					</li>
+					<li>Устанавливаем django-crispy-forms
+						<pre>pip install django-crispy-forms</pre>
+					</li>
+					<li>После этого обязательно необходимо зарегистирировать новый модуль в settings.py
+						<br>В settings.py - в [INSTALLED_APPS]
+						<pre>'crispy_forms',</pre>
+					</li>
+					<li>В settings.py - в самом низу - добавляем
+						<pre>CRISPY_TEMPLATE_PACK = 'bootstrap4' #сделал bootstrap4 - с 5 не работает - уточни как делать для 5</pre>
+					</li>
+					<li>
+						В signup.html - после load static - добавляем
+						<pre>{% load crispy_forms_tags %} - загрузили crispy_forms -из settings.py</pre>
+					</li>
+					<li>
+						В signup.html - {{ form }} - добавляем
+						<pre>--p>{{ form | crispy }}--/p></pre>
+					</li>
+					<li>
+						http://127.0.0.1:8000/account/create/ - создаём пользователя
+						<pre>Александр<br>Росляков<br>Mello-second<br>blog1234<br>blog1234<br>elprojectasr@yandex.ru</pre>
+						Получаем ошибку!
+					</li>
+					<li>
+						Исправляем в signup.html
+						<pre>--form action="post">  --->   --form method="post"></pre>
+					</li>
+					<li>
+						В views.py - в def signUpView - исправляем
+						<pre>username = form.clean_data.get('username') ---> username = form.cleaned_data.get('username')</pre>
+					</li>
+					<li>
+						В админке удаляем usera - и создайм заново через брайзер - всё должно заработать
+					</li>
+					<li>В forms.py - class SignUpForm - class Meta - fields - Добавляем email
+						<pre>fields = ('first_name', 'last_name', 'username', 'password1', 'password2', 'email')</pre>
+					</li>
+					<li>Сохраняем все файлыю Опять в админке удаляем пользователя, и добавляем заново в браузере</li>
+					<li>
+						Проверяем в админке, всё есть - сохраняемся и пушим в репозиторий
+					</li>
+				</ol>
+			<li><p class="boldertext">login & logout</p></li>
+				<ol type="a">
+					<li>
+						В shop views.py импортируем аутентефикационную форму - встроенную в джанго
+						<pre>from django.contrib.auth.forms import AuthenticationForm</pre>
+					</li>
+					<li>
+						Так же импортируем
+						<pre>from django.contrib.auth import login, authenticate</pre>
+					</li>
+					<li>Создаём функцию loginView
+						<pre>def loginView(request): #для залогинивания<br>    if request.method == 'POST': #если метод POST<br>        form = AuthenticationForm(data=request.POST)<br>        if form.is_valid():<br>            username = request.POST['username']<br>            password = request.POST['password']<br>            user = authenticate(username=username, password=password)<br>            if user is not None: #если user сушествует<br>                login(request, user)<br>                return redirect('home')#направлемя домой path name='home'<br>            else: #если юзера не сушествует<br>                return redirect('signup')#направляем path('account/create/' - name='signup'<br>    else: #если метод не POST<br>        form = AuthenticationForm()<br>    return render(request, 'login.html', {'form':form})</pre>
+					</li>
+					<li>В templates - создаём login.html</li>
+					<li>В него из home.html берём необходимые строчки наследования, статик файлов и тд
+						<pre>{% extends 'base.html' %} - берём из base.html<br>{% load static %} - подгружаем статические файлы<br>{% block title %} название страницы(Авторизация) {% endblock %} - название страницы, смотри в title base.html<br>{% block content %} - начало контента из base.html<br><br><br>{% endblock %} - конец контента из base.html</pre>
+					</li>
+					<li>
+						Внутри блок-контента пишим html - div container, row, col итд - Заголовок, авторизуйтиесь или создайте новый аккакнт и тд - добавляем ссылку-кнопку на signup.html(создание нового юзера)
+						<pre>--a href="{% url 'signup' %}" class="btn btn-secondary">Создать нового пользователя--/a></pre>
+					</li>
+					<li>
+						В ecommerce-project/ecommerce/static/base.css - Добавляем класс -  custom_div
+					</li>
+					<li>В login.html - в отдельном dive col также создадим форму
+						<pre>--form method="post"><br>    {% csrf_token %}<br>    p>{{ form | crispy }}-/p><br>    button type="submit" class="btn btn-secondary">Войти--/button></pre>
+					</li>
+					<li>
+						В shop/urls.py - добавляем путь
+						<pre>path('account/login/', views.loginView, name='login'),</pre>
+					</li>
+					<li>
+						В navbar.html - необходимо добавить ссылка на регистрацию и залогинивание - после ссылки О НАс - пишем конструкцию if - для проверки залогинен ли пользователь, если да будем выводить имя пользователя в навбаре вместе с иконкой
+						<pre>{% if request.user.is_authenticated and request.user.first_name %} - залогинен ли пользователь?  если да то код ниже<br>--li class="nav-item"> - Имя пользователя если вошёл<br>    --span class="nav-link text-light text-uppercase fw-weight-bolder px-3"><br>        Добро пожаловать,  {{ request.user.first_name }}!--span class="material-symbols-sharp">skateboarding--/span><br>    --/span><br>--/li><br><br>--li class="nav-item"> - иконка для выхода<br>    a class="nav-link text-light text-uppercase fw-weight-bolder px-3" href=""><br>        Выйти--span class="material-symbols-sharp">cancel_presentation--/span><br>    --/a><br>--/li></pre>
+					</li>
+					<li>
+						Ниже в else Блоке, будет показываться только если мы вышли из аккакнта
+						<pre>{% else %} - если пользователь не залогинен<br><br>--li class="nav-item"> - зарегестрироватся<br>    --a class="nav-link text-light text-uppercase fw-weight-bolder px-3" href="{% url 'signup' %}"><br>        Загегестрироватья--span class="material-symbols-sharp">app_registration--/span><br>    -/a><br>--/li<br><br>--li class="nav-item"> - войти<br>    --a class="nav-link text-light text-uppercase fw-weight-bolder px-3" href="{% url 'login' %}"><br>       Войти--span class="material-symbols-sharp">login--/span><br>    --/a><br>--/li></pre>
+					</li>
+					<li>В конце обязательно endif
+						<pre>{% endif %}</pre>
+					</li>
+					<li>Сверху в login.html - после load static - не забыввем подгрузить crispy forms tags
+						<pre>{% load crispy_forms_tags %} - загрузили crispy_forms -из settings.py</pre>
+					</li>
+					<li>Заходим, проверяем, всё должно работать, кроме выхода - на данном этапе</li>
+					<li>В shop/views.py - создаём функуцию для выхода из аккаунта - signoutView
+						<pre>def signoutView(request): #Для выхода из аккаунта<br>    logout(request) #это втроенная функция django<br>    return redirect('login')</pre>
+					</li>
+					<li>
+						В shop/urls.py создаём путь для выхода из аккаунта
+						<pre> path('account/signout/', views.signoutView, name='signout'),</pre>
+					</li>
+					<li>
+						В navbar.html - в href для выхода - добавим вызов этого пути по name signout
+						<pre>--<a class="nav-link text-light text-uppercase fw-weight-bolder px-3" href="{% url 'signout' %}"></pre>
+					</li>
+					<li>Сохраняем все файлы, проверяем - ошибка!</li>
+					<li>В views.py импортируем logout
+						<pre>from django.contrib.auth import logout</pre>
+						Всё работает
+					</li>
+
+
+			<li><p class="boldertext">Самостоятельно: делаю строницу КОНТАКТЫ</p></li>
+				<ol type="a">
+					<li>в shop/tamplates - создаём шаблон - contacts.html</li>
+					<li>Внутри добавляем информацию о наследовании из home.html
+						<pre>{% extends 'base.html' %} - берём из base.html<br>{% load static %} - подгружаем статические файлы<br>{% block title %} название страницы(Создать новый аккаунт) {% endblock %} - название страницы, смотри в title base.html<br>{% block content %} - начало контента из base.html<br><br><br>{% endblock %} - конец контента из base.html</pre>
+					</li>
+					<li>Внутири блок контента  - наши контакты, телефон, емайл и тд</li>
+					<li>В shop/views.py - создаём функкциию, для открывания страницы contatcts.html
+						<pre>def contacts(request):#контакты<br>    return render(request,'contacts.html')</pre>
+					</li>
+					<li>В shop/urls.py - Добавляем путь url, опираясь на функцию def contacts
+						path('contacts', views.contacts, name='contacts'),
+					</li>
+					<li>В navbar.html - в ссылке контакты добавляем путь к нашей странице, основываясь на аргумент пути name из path
+						<pre>href="{% url 'contacts' %}"</pre>
+					</li>
+					<li>Всё готово!</li>
+				</ol>
+			<li><p class="boldertext">Самостоятельно: делаю строницу О НАС</p></li>
+				<ol type="a">
+					<li>Всё аналогично - контактам</li>
+					<li>push to git</li>
+				</ol>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		</ol><!-- закрывающий Eccomerce внешний список -->
+		<br><br><br><br><br><br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		<h3>Описание файлов django:</h3>
+		<ul>
+			<li>manage.py - в нём админ действия внешнего уровня(например startserver)
+				<br>для информации в cmd - python manage.py help - там его команды, подробней о каждой гугли.
+				<br><div class="boldertext">manage.py - не редактировать</div>
+			</li>
+			<li>db.sqlite3 - это автосгенерируемая база данных. Её можно заменить на более продвинутую</li>
+			<li>__init__.py - Тоже пока не трогаем</li>
+			<li>settings.py - настройки (папки, код, дебаг, место шаблонов, язык)</li>
+			<li>urls.py - список ссылок. Куда отправлять пользователя при запросе
+				<br>сайт.ком/urls (admin, home, page и тп)
+			</li>
+			<li>views.py - создаём сами в нём пишем функции на Python</li>
+			<li>tamplates - создаём папку сами, в ней будут хранится шаблоны, html страницы.  В settyngs.py в DIRS - обязательно добавляем 'tampletes' - чтобы django искал шаблоны в этой папке</li>
+			<li></li>
+		</ul>
+		<br><br><br>
+		<h3>Решение проблемы с кирилицой в psql</h3>
+		<ul>
+			<li>Заходим в cmd postres, вводим логин пароль</li>
+			<li>меняем кодовуй страницу с 866 на 1251<pre>psql \! chcp 1251</pre></li>
+			<li><a href="https://iu5bmstu.top/index.php/PostgreSQL_-_%D0%9A%D0%B8%D1%80%D0%B8%D0%BB%D0%BB%D0%B8%D1%86%D0%B0_%D0%B2_psql_%D0%BF%D0%BE%D0%B4_Windows">Подробней по ссылке</a></li>
+		</ul>
+
+
+	</div> <!-- .orddiv -->
+	
+
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!-- берём из base.html -->
+{% extends 'base.html' %} 
+
+<!-- загрузили статические файлы -->
+{% load static %}
+
+<!-- название страницы, смотри в title base.html -->
+{% block title %} 
+	Домашняя страница
+{% endblock %}
+
+<!-- начало контента из base.html -->
+{% block content %}
+
+	<div class="col-10 mx-auto col-md-6 my-3 text-light">
+			
+		<!-- классы ниже - наши классы - будем описывать в css самостоятельно -->
+		<h4 class="product_title">International Contract Agency</h4>
+
+		<p class="product_desc">Мы занимаемся продажей премиальных марок автомобилей со всего мира</p>
+		<!-- text-justify - выравнивание текста -->		
+
+
+
+		<div class="mx-auto">
+			<a href="{% url 'home' %}" style="text-decoration: none;">
+				<div>
+					<button type="button" class="btn btn-primary btn-sm">
+						<h6>Начать покупки</h6>
+					</button>
+				</div>
+			</a>
+		</div>
+
+	</div><!-- col 10 -->
+
+
+
+
+
+
+
+<!-- конец контента из base.html -->
+{% endblock %}
