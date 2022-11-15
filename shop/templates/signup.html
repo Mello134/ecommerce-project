@@ -1,0 +1,67 @@
+<!-- берём из base.html -->
+{% extends 'base.html' %} 
+
+<!-- загрузили статические файлы -->
+{% load static %}
+
+<!-- название страницы, смотри в title base.html -->
+{% block title %} 
+	Создать новый аккаунт
+{% endblock %}
+
+<!-- начало контента из base.html -->
+{% block content %}
+
+
+	<div>
+		<!-- если форма не валидна -->
+		{% if not form.is_valid %}
+			<div>
+				<br>
+				<h1 class="product_title text-light text-center">
+					Создать новый аккаунт
+				</h1>
+				<br>
+				<div class="col-9 col-sm-9 col-md-6 col-lg-5 mx-auto text-light" style="background-color: #212529;">
+					<br>
+					<p>
+						Пожалйста введите слудующую информацию, для создания нового аккакунта.
+					</p>
+					<form action="post">
+						{% csrf_token %}
+						<p>{{ form }}</p>
+						<button type="submit" name="button" class="btn btn-secondary">
+							Создать
+						</button>
+					</form>
+				</div>
+			</div>
+		<!-- если всё ок идёт блок esle -->
+		{% else %}
+			<div class="mx-auto text-light">
+				<br>
+				<h1 class="product_title text-center">
+					Ваш аккаунт был успешно создан!
+				</h1>
+				<br>
+				<div>
+					<p>Ваш аккаунт был успешно создан и готов к использованию</p>
+					<br>
+					<a href="{% url 'home' %}">Начать покупки</a>
+				</div>
+
+			</div><!-- основной div -->
+		{% endif %}
+
+
+	</div>
+
+
+
+
+
+
+
+
+<!-- конец контента из base.html -->
+{% endblock %}

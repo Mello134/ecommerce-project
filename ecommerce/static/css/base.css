@@ -32,3 +32,9 @@ body {
 	'GRAD' -25,
 	'opsz' 48,
 }
+
+
+.errorlist li {
+	color: red;
+	font-weight: bold;
+}

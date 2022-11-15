@@ -3,6 +3,9 @@ from django.shortcuts import render, get_object_or_404, redirect
 #HttpResponse больше не нужен - будем пользоваться render-ом
 from .models import Category, Product, Cart, CartItem
 from django.core.exceptions import ObjectDoesNotExist
+from django.contrib.auth.models import Group, User
+from .forms import SignUpForm
+
 
 
 
@@ -114,6 +117,29 @@ def cart_remove_product(request, product_id): #удалить полностью
 	cart_item = CartItem.objects.get(product=product, cart=cart)
 	cart_item.delete()
 	return redirect('cart_detail')
+
+
+def signUpView(request):
+	#POST- это метод запроса
+	if request.method == 'POST':
+		form = SignUpForm(request.Post)
+		if form.is_valid(): #проверяем форму, valid-действительность
+			form.save() #В этом случае сохраняем форму
+			#мы будем находить пользователя из базы данных по username
+			username = form.clean_data.get('username')
+			signup_user  = User.objects.get(username=username)
+			#помещаем usera - в группу которую мы создали в админке 'User'
+			user_group = Group.objects.get(name='User')
+			user_group.user_set.add(signup_user)#!!!??? возможно не сработает
+	else: #если запрос не POST
+		form = SignUpForm() #присваиваем пустую форму
+	#будет выводится шаблон signup.html, и передовать переменную form в этот шаблон
+	return render(request, 'signup.html', {'form':form})
+
+
+
+
+
 
 
 
